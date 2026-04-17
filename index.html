@@ -703,58 +703,34 @@ nav.scrolled {
   margin: 0 auto 3rem;
 }
 .sectors-header h2 { color: #fff; }
-.sectors-morph-wrap {
-  text-align: center;
-  position: relative;
-  height: 120px;
+.sectors-list {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
-.sectors-morph {
+.sector-tag {
   font-family: 'DM Serif Display', serif;
-  font-size: 4rem;
+  font-size: 1.1rem;
   color: #fff;
-  position: relative;
-  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: 1px solid rgba(218,144,48,0.3);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: default;
+  white-space: nowrap;
 }
-.sectors-morph .char {
-  display: inline-block;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 1;
-  transform: translateY(0) rotateX(0);
-}
-.sectors-morph .char.out {
-  opacity: 0;
-  transform: translateY(-30px) rotateX(90deg);
-  filter: blur(4px);
-}
-.sectors-morph .char.in {
-  opacity: 0;
-  transform: translateY(30px) rotateX(-90deg);
-  filter: blur(4px);
-}
-.sectors-counter {
-  text-align: center;
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.sectors-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  transition: all 0.4s ease;
-}
-.sectors-dot.active {
-  background: var(--orange);
-  width: 24px;
-  border-radius: 3px;
+.sector-tag:hover {
+  border-color: var(--orange);
+  background: rgba(218,144,48,0.1);
+  color: var(--orange);
+  transform: translateY(-2px);
 }
 @media (max-width: 768px) {
-  .sectors-morph { font-size: 2.2rem; }
-  .sectors-morph-wrap { height: 80px; }
+  .sector-tag { font-size: 0.9rem; padding: 0.6rem 1.4rem; }
+  .sectors-list { gap: 0.7rem; }
 }
 
 /* ========== SERVICES CATALOG ========== */
@@ -1353,16 +1329,24 @@ footer {
   </div>
 </section>
 
-<!-- Sectors (Morph) -->
+<!-- Sectors (Static) -->
 <section class="sectors">
   <div class="sectors-header">
     <div class="eyebrow" style="text-align:center; color:var(--orange);">Industries</div>
     <h2 class="section-heading" style="color:#fff; text-align:center;">Sectors we <em>service</em></h2>
   </div>
-  <div class="sectors-morph-wrap">
-    <div class="sectors-morph" id="sectorMorph"></div>
+  <div class="sectors-list">
+    <div class="sector-tag reveal-up">Music</div>
+    <div class="sector-tag reveal-up">Film</div>
+    <div class="sector-tag reveal-up">Live Events</div>
+    <div class="sector-tag reveal-up">Art</div>
+    <div class="sector-tag reveal-up">Creative Agencies</div>
+    <div class="sector-tag reveal-up">Independent Creators</div>
+    <div class="sector-tag reveal-up">Creative Entrepreneurs</div>
+    <div class="sector-tag reveal-up">Brands</div>
+    <div class="sector-tag reveal-up">Professional Services</div>
+    <div class="sector-tag reveal-up">Entertainment & Culture</div>
   </div>
-  <div class="sectors-counter" id="sectorDots"></div>
 </section>
 
 <!-- Services Catalog -->
@@ -1822,63 +1806,8 @@ gsap.to('.process-bg-text', {
   }
 });
 
-// ========== SECTORS MORPH TEXT ==========
-(function() {
-  const sectors = ['Music', 'Film', 'Live Events', 'Art', 'Creative Agencies', 'Independent Creators', 'Creative Entrepreneurs', 'Brands', 'Professional Services', 'Entertainment & Culture'];
-  const morphEl = document.getElementById('sectorMorph');
-  const dotsEl = document.getElementById('sectorDots');
-  if (!morphEl || !dotsEl) return;
-  let current = 0;
-
-  // Create dots
-  sectors.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'sectors-dot' + (i === 0 ? ' active' : '');
-    dotsEl.appendChild(dot);
-  });
-
-  function setChars(text) {
-    morphEl.innerHTML = '';
-    text.split('').forEach((c, i) => {
-      const span = document.createElement('span');
-      span.className = 'char';
-      span.textContent = c === ' ' ? '\u00A0' : c;
-      span.style.transitionDelay = (i * 0.02) + 's';
-      morphEl.appendChild(span);
-    });
-  }
-
-  function morphTo(nextIndex) {
-    const chars = morphEl.querySelectorAll('.char');
-    // Animate out
-    chars.forEach(c => c.classList.add('out'));
-
-    setTimeout(() => {
-      setChars(sectors[nextIndex]);
-      const newChars = morphEl.querySelectorAll('.char');
-      newChars.forEach(c => c.classList.add('in'));
-      // Force reflow
-      morphEl.offsetHeight;
-      requestAnimationFrame(() => {
-        newChars.forEach(c => c.classList.remove('in'));
-      });
-
-      // Update dots
-      dotsEl.querySelectorAll('.sectors-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === nextIndex);
-      });
-    }, 250);
-  }
-
-  // Initialize
-  setChars(sectors[0]);
-
-  // Auto-cycle
-  setInterval(() => {
-    current = (current + 1) % sectors.length;
-    morphTo(current);
-  }, 1200);
-})();
+// ========== SECTORS (static — no morph) ==========
+// Sector tags use .reveal-up class and are animated by the shared ScrollTrigger block above.
 
 // Smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {
