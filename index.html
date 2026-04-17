@@ -403,29 +403,49 @@
 
         .sectors-rotator {
             position: relative;
-            height: clamp(4rem, 12vw, 8rem);
+            height: clamp(3.5rem, 8vw, 6rem);
             overflow: hidden;
             margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .sector-word {
             position: absolute;
             width: 100%;
             left: 0;
-            top: 0;
+            top: 50%;
+            transform: translateY(-50%);
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 10vw, 7rem);
+            font-size: clamp(2rem, 6vw, 5rem);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--navy);
             opacity: 0;
             clip-path: inset(0 0 100% 0);
+            white-space: nowrap;
         }
 
         .sector-word.active {
             opacity: 1;
             clip-path: inset(0 0 0% 0);
+        }
+
+        @media (max-width: 768px) {
+            .sectors-rotator {
+                height: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .sector-word {
+                font-size: clamp(1.5rem, 5vw, 2.5rem);
+            }
+
+            .sectors-label {
+                font-size: 0.85rem;
+                letter-spacing: 0.1em;
+            }
         }
 
         .sectors-subtitle {
@@ -1581,29 +1601,25 @@
             tl.to(current, {
                 clipPath: 'inset(100% 0 0% 0)',
                 opacity: 0,
-                y: -30,
                 duration: 0.5,
                 ease: 'power2.in',
                 onComplete: () => {
                     current.classList.remove('active');
-                    gsap.set(current, { y: 0 });
                 }
             });
 
             // Animate next word in (reveal from bottom)
             tl.set(next, {
                 clipPath: 'inset(0 0 100% 0)',
-                opacity: 0,
-                y: 30
+                opacity: 0
             });
             tl.to(next, {
                 clipPath: 'inset(0 0 0% 0)',
                 opacity: 1,
-                y: 0,
                 duration: 0.6,
                 ease: 'power2.out',
                 onStart: () => next.classList.add('active')
-            }, '-=0.1');
+            }, '-=0.15');
         }
 
         // Start sector rotation when section scrolls into view
