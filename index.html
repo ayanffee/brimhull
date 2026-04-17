@@ -369,13 +369,15 @@
         }
 
         .sectors {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             background: var(--light-gray);
+            overflow: hidden;
         }
 
         .sectors-container {
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .section-heading {
@@ -389,25 +391,56 @@
             text-align: center;
         }
 
-        .sectors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
+        .sectors-label {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--orange);
+            margin-bottom: 1rem;
         }
 
-        .sector-tag {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 6px;
-            text-align: center;
+        .sectors-rotator {
+            position: relative;
+            height: clamp(4rem, 12vw, 8rem);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .sector-word {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
             font-family: 'Syne', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 800;
             text-transform: uppercase;
-            color: var(--navy);
             letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            color: var(--navy);
+            opacity: 0;
+            clip-path: inset(0 0 100% 0);
+        }
+
+        .sector-word.active {
+            opacity: 1;
+            clip-path: inset(0 0 0% 0);
+        }
+
+        .sectors-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .sectors-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--orange);
+            margin: 2rem auto 0;
         }
 
         .services {
@@ -1107,19 +1140,20 @@
 
     <section class="sectors">
         <div class="sectors-container">
-            <h2 class="section-heading">ENTERTAINMENT SECTORS WE SERVE</h2>
-            <div class="sectors-grid">
-                <div class="sector-tag">Film</div>
-                <div class="sector-tag">Music</div>
-                <div class="sector-tag">Live Events</div>
-                <div class="sector-tag">Art</div>
-                <div class="sector-tag">Fashion</div>
-                <div class="sector-tag">Photography</div>
-                <div class="sector-tag">Brands</div>
-                <div class="sector-tag">Creative Agencies</div>
-                <div class="sector-tag">Entertainment</div>
-                <div class="sector-tag">Professional Services</div>
+            <div class="sectors-label">BRIM AND HULL IS GREAT FOR</div>
+            <div class="sectors-rotator" id="sectorsRotator">
+                <div class="sector-word active">FILM</div>
+                <div class="sector-word">MUSIC</div>
+                <div class="sector-word">LIVE EVENTS</div>
+                <div class="sector-word">ART</div>
+                <div class="sector-word">FASHION</div>
+                <div class="sector-word">PHOTOGRAPHY</div>
+                <div class="sector-word">BRANDS</div>
+                <div class="sector-word">CREATIVE AGENCIES</div>
+                <div class="sector-word">ENTERTAINMENT</div>
             </div>
+            <p class="sectors-subtitle">Legal protection built for every corner of the entertainment industry.</p>
+            <div class="sectors-divider"></div>
         </div>
     </section>
 
@@ -1527,6 +1561,60 @@
             tl.to(slides[currentSlide], { opacity: 1, duration: 0.8 }, '-=0.4');
             gsap.delayedCall(8, rotateSlides);
         }
+
+        // Sector text rotator — Legalese-style cycling animation
+        const sectorWords = document.querySelectorAll('.sector-word');
+        let currentSector = 0;
+
+        function rotateSectors() {
+            const current = sectorWords[currentSector];
+            const next = sectorWords[(currentSector + 1) % sectorWords.length];
+
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    currentSector = (currentSector + 1) % sectorWords.length;
+                    gsap.delayedCall(2, rotateSectors);
+                }
+            });
+
+            // Animate current word out (slide up and clip away)
+            tl.to(current, {
+                clipPath: 'inset(100% 0 0% 0)',
+                opacity: 0,
+                y: -30,
+                duration: 0.5,
+                ease: 'power2.in',
+                onComplete: () => {
+                    current.classList.remove('active');
+                    gsap.set(current, { y: 0 });
+                }
+            });
+
+            // Animate next word in (reveal from bottom)
+            tl.set(next, {
+                clipPath: 'inset(0 0 100% 0)',
+                opacity: 0,
+                y: 30
+            });
+            tl.to(next, {
+                clipPath: 'inset(0 0 0% 0)',
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                onStart: () => next.classList.add('active')
+            }, '-=0.1');
+        }
+
+        // Start sector rotation when section scrolls into view
+        ScrollTrigger.create({
+            trigger: '.sectors',
+            start: 'top 70%',
+            once: true,
+            onEnter: () => {
+                gsap.delayedCall(1, rotateSectors);
+            }
+        });
 
         const revealElements = document.querySelectorAll('.prop-card, .blog-card, .testimonial-card, .about-image, .about-content');
 
