@@ -1105,8 +1105,8 @@ footer {
 <nav id="mainNav">
   <div class="nav-logo">Brim<span>&</span>Hull</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1118,8 +1118,8 @@ footer {
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="closeMobile()">About</a>
   <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#about" onclick="closeMobile()">About</a>
   <a href="#faq" onclick="closeMobile()">FAQ</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
   <a href="https://calendly.com" target="_blank" style="color:var(--orange);">Book a Call</a>
@@ -1178,6 +1178,57 @@ footer {
     <div class="hero-dot" data-index="3"><div class="fill"></div></div>
     <div class="hero-dot" data-index="4"><div class="fill"></div></div>
     <div class="hero-dot" data-index="5"><div class="fill"></div></div>
+  </div>
+</section>
+
+<!-- Sectors (Static) -->
+<section class="sectors">
+  <div class="sectors-header">
+    <div class="eyebrow" style="text-align:center; color:var(--orange);">Industries</div>
+    <h2 class="section-heading" style="color:#fff; text-align:center;">Sectors we <em>service</em></h2>
+  </div>
+  <div class="sectors-list">
+    <div class="sector-tag reveal-up">Music</div>
+    <div class="sector-tag reveal-up">Film</div>
+    <div class="sector-tag reveal-up">Live Events</div>
+    <div class="sector-tag reveal-up">Art</div>
+    <div class="sector-tag reveal-up">Creative Agencies</div>
+    <div class="sector-tag reveal-up">Independent Creators</div>
+    <div class="sector-tag reveal-up">Creative Entrepreneurs</div>
+    <div class="sector-tag reveal-up">Brands</div>
+    <div class="sector-tag reveal-up">Professional Services</div>
+    <div class="sector-tag reveal-up">Entertainment & Culture</div>
+  </div>
+</section>
+
+<!-- Services Carousel -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="eyebrow reveal-up">Our Services</div>
+    <h2 class="section-heading reveal-up" style="color: var(--navy);">Fixed fees. <em>No surprises.</em></h2>
+    <p class="reveal-up">We offer two core areas of legal service, each with transparent fixed pricing. Click a card to explore services and pricing.</p>
+  </div>
+
+  <div class="services-carousel" id="servicesCarousel">
+    <a href="ip-law.html" class="services-carousel-card reveal-up">
+      <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80" alt="Intellectual Property Law — music studio">
+      <div class="services-carousel-card-body">
+        <h3>Intellectual Property Law</h3>
+        <p>Protect what you create. From music rights and licensing to publishing deals and talent agreements, we build the legal framework that keeps your creative work safe and your revenue flowing. Fixed fees from ₦30,000.</p>
+      </div>
+    </a>
+    <a href="commercial-law.html" class="services-carousel-card reveal-up">
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Commercial Law — business meeting">
+      <div class="services-carousel-card-body">
+        <h3>Commercial Law</h3>
+        <p>Build your business on solid ground. Company registration, trademark protection, shareholder agreements, and everything you need to structure, protect, and scale your creative enterprise. Fixed fees from ₦50,000.</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="services-carousel-progress">
+    <div class="services-carousel-bar active"></div>
+    <div class="services-carousel-bar"></div>
   </div>
 </section>
 
@@ -1271,57 +1322,6 @@ footer {
         <p>Compliance · Capital · Scale</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Sectors (Static) -->
-<section class="sectors">
-  <div class="sectors-header">
-    <div class="eyebrow" style="text-align:center; color:var(--orange);">Industries</div>
-    <h2 class="section-heading" style="color:#fff; text-align:center;">Sectors we <em>service</em></h2>
-  </div>
-  <div class="sectors-list">
-    <div class="sector-tag reveal-up">Music</div>
-    <div class="sector-tag reveal-up">Film</div>
-    <div class="sector-tag reveal-up">Live Events</div>
-    <div class="sector-tag reveal-up">Art</div>
-    <div class="sector-tag reveal-up">Creative Agencies</div>
-    <div class="sector-tag reveal-up">Independent Creators</div>
-    <div class="sector-tag reveal-up">Creative Entrepreneurs</div>
-    <div class="sector-tag reveal-up">Brands</div>
-    <div class="sector-tag reveal-up">Professional Services</div>
-    <div class="sector-tag reveal-up">Entertainment & Culture</div>
-  </div>
-</section>
-
-<!-- Services Carousel -->
-<section class="services" id="services">
-  <div class="services-header">
-    <div class="eyebrow reveal-up">Our Services</div>
-    <h2 class="section-heading reveal-up" style="color: var(--navy);">Fixed fees. <em>No surprises.</em></h2>
-    <p class="reveal-up">We offer two core areas of legal service, each with transparent fixed pricing. Click a card to explore services and pricing.</p>
-  </div>
-
-  <div class="services-carousel" id="servicesCarousel">
-    <a href="ip-law.html" class="services-carousel-card reveal-up">
-      <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80" alt="Intellectual Property Law — music studio">
-      <div class="services-carousel-card-body">
-        <h3>Intellectual Property Law</h3>
-        <p>Protect what you create. From music rights and licensing to publishing deals and talent agreements, we build the legal framework that keeps your creative work safe and your revenue flowing. Fixed fees from ₦30,000.</p>
-      </div>
-    </a>
-    <a href="commercial-law.html" class="services-carousel-card reveal-up">
-      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Commercial Law — business meeting">
-      <div class="services-carousel-card-body">
-        <h3>Commercial Law</h3>
-        <p>Build your business on solid ground. Company registration, trademark protection, shareholder agreements, and everything you need to structure, protect, and scale your creative enterprise. Fixed fees from ₦50,000.</p>
-      </div>
-    </a>
-  </div>
-
-  <div class="services-carousel-progress">
-    <div class="services-carousel-bar active"></div>
-    <div class="services-carousel-bar"></div>
   </div>
 </section>
 
