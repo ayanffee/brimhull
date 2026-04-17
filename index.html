@@ -522,15 +522,7 @@ nav.scrolled {
 }
 
 /* ========== FOUNDER ========== */
-.founder {
-  padding: 10rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 5rem;
-  align-items: center;
-}
+/* .founder section removed — director bio is now inside .intro */
 .founder-image-wrap {
   position: relative;
 }
@@ -554,13 +546,13 @@ nav.scrolled {
   border-radius: 8px;
   z-index: -1;
 }
-.founder-content h3 {
+.director-bio h3 {
   font-family: 'DM Serif Display', serif;
   font-size: 1.4rem;
   color: var(--navy);
   margin-bottom: 0.3rem;
 }
-.founder-content .founder-title {
+.director-bio .founder-title {
   font-size: 0.8rem;
   color: var(--orange);
   letter-spacing: 0.08em;
@@ -568,20 +560,17 @@ nav.scrolled {
   font-weight: 600;
   margin-bottom: 2rem;
 }
-.founder-content p {
+.director-bio p {
   font-size: 0.95rem;
   color: var(--text-body);
   line-height: 1.9;
   margin-bottom: 1.2rem;
 }
-.founder-content blockquote {
+.director-bio blockquote {
   font-family: 'DM Serif Display', serif;
   font-size: 1.3rem;
   color: var(--navy);
   font-style: italic;
-  border-left: 3px solid var(--orange);
-  padding-left: 1.5rem;
-  margin: 2rem 0;
   line-height: 1.5;
 }
 
@@ -1080,7 +1069,7 @@ footer {
 @media (max-width: 900px) {
   .intro { grid-template-columns: 1fr; padding: 6rem 2rem; gap: 3rem; }
   .intro-right { display: none; }
-  .founder { grid-template-columns: 1fr; padding: 6rem 2rem; gap: 3rem; }
+  .director-bio { margin-top: 1rem; }
   .serve-grid, .process-grid { grid-template-columns: 1fr; }
   .serve, .process, .services, .faq, .testimonials, .contact, .sectors { padding: 5rem 2rem; }
   .testimonials-grid { grid-template-columns: 1fr; }
@@ -1206,17 +1195,14 @@ footer {
     </div>
     <div class="founder-accent"></div>
   </div>
-</section>
-
-<!-- Director Bio -->
-<section class="founder" id="founder">
-  <div class="founder-content" style="max-width: 800px; margin: 0 auto; text-align: center; grid-column: 1 / -1;">
+  <!-- Director Bio (merged into About) -->
+  <div class="director-bio reveal-up" style="grid-column: 1 / -1; max-width: 800px; margin: 2rem auto 0; text-align: center;">
     <div class="eyebrow reveal-up">Meet the Director</div>
     <h3 class="reveal-up" style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 0.3rem;">Tobechi Nwosu</h3>
     <div class="founder-title reveal-up">Director, Brim and Hull</div>
     <p class="reveal-up">Tobechi Nwosu is a legal practitioner with a singular mission: to build the legal infrastructure that Africa's creative economy has been missing. Trained in intellectual property and commercial law, she saw firsthand how creators — from musicians and filmmakers to artists and entrepreneurs — were underserved by traditional law firms that didn't understand their world.</p>
     <p class="reveal-up">That's why she built Brim and Hull. A firm that speaks the language of creators. One that replaces opaque billable hours with transparent fixed fees. One that treats your catalogue, your brand, and your vision with the same rigour that corporate law affords billion-dollar mergers.</p>
-    <blockquote class="reveal-up" style="text-align: left;">Your art deserves the same level of legal protection as any Fortune 500 company. That's not aspirational — that's what we deliver.</blockquote>
+    <blockquote class="reveal-up" style="text-align: left; border-left: 3px solid var(--orange); padding-left: 1.2rem; margin: 1.5rem auto; max-width: 600px; font-style: italic; color: var(--navy);">Your art deserves the same level of legal protection as any Fortune 500 company. That's not aspirational — that's what we deliver.</blockquote>
   </div>
 </section>
 
