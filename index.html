@@ -439,88 +439,6 @@ nav.scrolled {
 }
 
 /* ========== HOW IT WORKS ========== */
-.process {
-  padding: 8rem 4rem;
-  background: var(--navy);
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-.process-bg-text {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(8rem, 18vw, 16rem);
-  color: rgba(255,255,255,0.015);
-  white-space: nowrap;
-  pointer-events: none;
-}
-.process-header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 5rem;
-  position: relative;
-  z-index: 2;
-}
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-.process-step {
-  text-align: center;
-  padding: 2.5rem;
-  position: relative;
-}
-.process-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 4rem;
-  color: var(--orange);
-  opacity: 0.15;
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  line-height: 1;
-}
-.process-icon {
-  width: 60px; height: 60px;
-  border: 1.5px solid var(--orange);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem auto 1.5rem;
-  font-size: 1.4rem;
-  color: var(--orange);
-}
-.process-icon svg {
-  width: 26px; height: 26px;
-}
-.process-step h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: var(--orange);
-}
-.process-step p {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.8;
-}
-.process-connector {
-  position: absolute;
-  top: 50%;
-  right: -1.5rem;
-  color: var(--orange);
-  font-size: 1.2rem;
-  opacity: 0.4;
-}
-
 /* ========== FOUNDER ========== */
 /* .founder section removed — director bio is now inside .intro */
 .founder-image-wrap {
@@ -707,15 +625,17 @@ nav.scrolled {
   padding: 0.8rem 2rem;
   border: 1px solid rgba(218,144,48,0.3);
   border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
   cursor: default;
   white-space: nowrap;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 .sector-tag:hover {
   border-color: var(--orange);
   background: rgba(218,144,48,0.1);
   color: var(--orange);
-  transform: translateY(-2px);
 }
 @media (max-width: 768px) {
   .sector-tag { font-size: 0.9rem; padding: 0.6rem 1.4rem; }
@@ -944,6 +864,72 @@ nav.scrolled {
   line-height: 1.8;
   position: relative; z-index: 2;
 }
+.contact-form {
+  position: relative; z-index: 2;
+  max-width: 650px;
+  margin: 2.5rem auto 0;
+  text-align: left;
+}
+.contact-form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.contact-form-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.contact-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.contact-form label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+.contact-form select option {
+  background: var(--navy);
+  color: #fff;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--orange);
+  background: rgba(255,255,255,0.09);
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.contact-form button {
+  width: 100%;
+  cursor: pointer;
+}
 .contact-buttons {
   display: flex;
   gap: 1rem;
@@ -1049,6 +1035,11 @@ footer {
 .whatsapp-btn svg { width: 28px; height: 28px; fill: #fff; }
 
 /* ========== REVEAL ANIMATIONS ========== */
+.cubic-in {
+  opacity: 0;
+  transform: rotateX(90deg) scale(0.6);
+  transform-origin: center bottom;
+}
 .reveal-up {
   opacity: 0;
   transform: translateY(60px);
@@ -1070,17 +1061,18 @@ footer {
   .intro { grid-template-columns: 1fr; padding: 6rem 2rem; gap: 3rem; }
   .intro-right { display: none; }
   .director-bio { margin-top: 1rem; }
-  .serve-grid, .process-grid { grid-template-columns: 1fr; }
-  .serve, .process, .services, .faq, .testimonials, .contact, .sectors { padding: 5rem 2rem; }
+  .serve-grid { grid-template-columns: 1fr; }
+  .serve, .services, .faq, .testimonials, .contact, .sectors { padding: 5rem 2rem; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .services-carousel-card { flex: 0 0 85%; min-width: 280px; }
   .contact-buttons { flex-direction: column; align-items: center; }
+  .contact-form-row { flex-direction: column; }
+  .contact-form { margin-top: 2rem; }
   .footer-top { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   .hero-content { left: 2rem; right: 2rem; }
   .hero-cta-row { flex-direction: column; }
   .hero-btn { text-align: center; }
-  .process-connector { display: none; }
 }
 @media (max-width: 500px) {
   .footer-top { grid-template-columns: 1fr; }
@@ -1188,16 +1180,16 @@ footer {
     <h2 class="section-heading" style="color:#fff; text-align:center;">Sectors we <em>service</em></h2>
   </div>
   <div class="sectors-list">
-    <div class="sector-tag reveal-up">Music</div>
-    <div class="sector-tag reveal-up">Film</div>
-    <div class="sector-tag reveal-up">Live Events</div>
-    <div class="sector-tag reveal-up">Art</div>
-    <div class="sector-tag reveal-up">Creative Agencies</div>
-    <div class="sector-tag reveal-up">Independent Creators</div>
-    <div class="sector-tag reveal-up">Creative Entrepreneurs</div>
-    <div class="sector-tag reveal-up">Brands</div>
-    <div class="sector-tag reveal-up">Professional Services</div>
-    <div class="sector-tag reveal-up">Entertainment & Culture</div>
+    <div class="sector-tag cubic-in">Music</div>
+    <div class="sector-tag cubic-in">Film</div>
+    <div class="sector-tag cubic-in">Live Events</div>
+    <div class="sector-tag cubic-in">Art</div>
+    <div class="sector-tag cubic-in">Creative Agencies</div>
+    <div class="sector-tag cubic-in">Independent Creators</div>
+    <div class="sector-tag cubic-in">Creative Entrepreneurs</div>
+    <div class="sector-tag cubic-in">Brands</div>
+    <div class="sector-tag cubic-in">Professional Services</div>
+    <div class="sector-tag cubic-in">Entertainment &amp; Culture</div>
   </div>
 </section>
 
@@ -1254,37 +1246,6 @@ footer {
     <p class="reveal-up">Tobechi Nwosu is a legal practitioner with a singular mission: to build the legal infrastructure that Africa's creative economy has been missing. Trained in intellectual property and commercial law, she saw firsthand how creators — from musicians and filmmakers to artists and entrepreneurs — were underserved by traditional law firms that didn't understand their world.</p>
     <p class="reveal-up">That's why she built Brim and Hull. A firm that speaks the language of creators. One that replaces opaque billable hours with transparent fixed fees. One that treats your catalogue, your brand, and your vision with the same rigour that corporate law affords billion-dollar mergers.</p>
     <blockquote class="reveal-up" style="text-align: left; border-left: 3px solid var(--orange); padding-left: 1.2rem; margin: 1.5rem auto; max-width: 600px; font-style: italic; color: var(--navy);">Your art deserves the same level of legal protection as any Fortune 500 company. That's not aspirational — that's what we deliver.</blockquote>
-  </div>
-</section>
-
-<!-- How It Works -->
-<section class="process" id="process">
-  <div class="process-bg-text">PROCESS</div>
-  <div class="process-header">
-    <div class="eyebrow reveal-up">How It Works</div>
-    <h2 class="section-heading reveal-up" style="color: #fff;">Three steps to <em>complete protection</em></h2>
-  </div>
-  <div class="process-grid">
-    <div class="process-step reveal-up">
-      <div class="process-num">01</div>
-      <div class="process-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-      <h3>Consult</h3>
-      <p>Book a free discovery call. We listen to your creative vision, understand your business, and identify the legal infrastructure you need.</p>
-      <div class="process-connector">→</div>
-    </div>
-    <div class="process-step reveal-up">
-      <div class="process-num">02</div>
-      <div class="process-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
-      <h3>Onboard</h3>
-      <p>Choose the services that fit your stage. We provide a clear scope, fixed price, and timeline. No hidden charges, no ambiguity.</p>
-      <div class="process-connector">→</div>
-    </div>
-    <div class="process-step reveal-up">
-      <div class="process-num">03</div>
-      <div class="process-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-      <h3>Protect</h3>
-      <p>We execute. Contracts drafted, IP registered, structures built. You create with the confidence that your legal foundation is rock solid.</p>
-    </div>
   </div>
 </section>
 
@@ -1382,10 +1343,57 @@ footer {
 <!-- Contact CTA -->
 <section class="contact" id="contact">
   <div class="contact-bg">BRIM&HULL</div>
-  <div class="eyebrow" style="position:relative; z-index:2;">Let's Work Together</div>
-  <h2 class="section-heading" style="color: #fff;">Ready to protect your <em>creative vision</em>?</h2>
-  <p>Book a free consultation to discuss how Brim & Hull can build the legal infrastructure your creative business needs to scale.</p>
-  <div class="contact-buttons">
+  <div class="eyebrow reveal-up" style="position:relative; z-index:2;">Let's Work Together</div>
+  <h2 class="section-heading reveal-up" style="color: #fff;">Ready to protect your <em>creative vision</em>?</h2>
+  <p class="reveal-up">Book a free consultation to discuss how Brim & Hull can build the legal infrastructure your creative business needs to scale.</p>
+
+  <form class="contact-form reveal-up" onsubmit="event.preventDefault(); this.querySelector('.contact-form-success').style.display='block'; this.querySelector('.contact-form-fields').style.display='none';">
+    <div class="contact-form-fields">
+      <div class="contact-form-row">
+        <div class="contact-form-group">
+          <label for="contactName">Full Name</label>
+          <input type="text" id="contactName" name="name" placeholder="Your name" required>
+        </div>
+        <div class="contact-form-group">
+          <label for="contactEmail">Email Address</label>
+          <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="contact-form-row">
+        <div class="contact-form-group">
+          <label for="contactPhone">Phone Number</label>
+          <input type="tel" id="contactPhone" name="phone" placeholder="+234...">
+        </div>
+        <div class="contact-form-group">
+          <label for="contactService">Service Interested In</label>
+          <select id="contactService" name="service">
+            <option value="" disabled selected>Select a service</option>
+            <option value="ip-law">Intellectual Property Law</option>
+            <option value="commercial-law">Commercial Law</option>
+            <option value="retainer">Monthly Retainer</option>
+            <option value="consultation">General Consultation</option>
+          </select>
+        </div>
+      </div>
+      <div class="contact-form-group" style="width:100%;">
+        <label for="contactMessage">Tell us about your project</label>
+        <textarea id="contactMessage" name="message" rows="4" placeholder="Briefly describe what you need help with..."></textarea>
+      </div>
+      <button type="submit" class="btn-cta-primary" style="margin-top: 0.5rem;">Send Message</button>
+    </div>
+    <div class="contact-form-success" style="display:none;">
+      <h3 style="font-family:'DM Serif Display',serif; color:var(--orange); font-size:1.6rem; margin-bottom:1rem;">Message Sent!</h3>
+      <p style="color:rgba(255,255,255,0.7);">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+    </div>
+  </form>
+
+  <div class="contact-divider reveal-up" style="position:relative; z-index:2; display:flex; align-items:center; gap:1.5rem; max-width:500px; margin:2.5rem auto;">
+    <span style="flex:1; height:1px; background:rgba(255,255,255,0.15);"></span>
+    <span style="color:rgba(255,255,255,0.4); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em;">or</span>
+    <span style="flex:1; height:1px; background:rgba(255,255,255,0.15);"></span>
+  </div>
+
+  <div class="contact-buttons reveal-up">
     <a href="https://calendly.com" target="_blank" class="btn-cta-primary">Book a Free Call</a>
     <a href="mailto:hello@brimhull.com" class="btn-cta-secondary">Email Us</a>
   </div>
@@ -1623,6 +1631,38 @@ gsap.utils.toArray('.reveal-up').forEach(el => {
   });
 });
 
+// Cubic 3D sector tag animation — staggered flip-in with random dissolve
+gsap.utils.toArray('.cubic-in').forEach((tag, i) => {
+  gsap.to(tag, {
+    opacity: 1,
+    rotateX: 0,
+    scale: 1,
+    duration: 0.8,
+    delay: i * 0.08,
+    ease: 'back.out(1.7)',
+    scrollTrigger: { trigger: '.sectors-list', start: 'top 80%' }
+  });
+});
+
+// Continuous subtle floating for sector tags after they appear
+ScrollTrigger.create({
+  trigger: '.sectors',
+  start: 'top 80%',
+  onEnter: () => {
+    gsap.utils.toArray('.sector-tag').forEach((tag, i) => {
+      gsap.to(tag, {
+        y: -6,
+        duration: 1.8 + (i % 3) * 0.4,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        delay: 0.8 + i * 0.08
+      });
+    });
+  },
+  once: true
+});
+
 // Clip-path reveals
 gsap.utils.toArray('.clip-reveal').forEach(el => {
   gsap.to(el, {
@@ -1679,14 +1719,6 @@ gsap.utils.toArray('.services-carousel-card').forEach((card, i) => {
   positionItems(0);
 })();
 
-// Process steps stagger
-gsap.utils.toArray('.process-step').forEach((step, i) => {
-  gsap.fromTo(step, { opacity: 0, y: 50 }, {
-    opacity: 1, y: 0, duration: 0.7, delay: i * 0.2,
-    scrollTrigger: { trigger: '.process-grid', start: 'top 75%' }
-  });
-});
-
 // Testimonials
 gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
   gsap.fromTo(card, { opacity: 0, y: 40 }, {
@@ -1706,19 +1738,7 @@ gsap.to('.contact-bg', {
   }
 });
 
-// Process background text parallax
-gsap.to('.process-bg-text', {
-  xPercent: -15,
-  scrollTrigger: {
-    trigger: '.process',
-    start: 'top bottom',
-    end: 'bottom top',
-    scrub: 1
-  }
-});
-
-// ========== SECTORS (static — no morph) ==========
-// Sector tags use .reveal-up class and are animated by the shared ScrollTrigger block above.
+// ========== SECTORS — cubic animation handled above ==========
 
 // Smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {
