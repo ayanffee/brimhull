@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IP Law Services & Pricing — Brim & Hull</title>
-<meta name="description" content="Intellectual Property Law services with transparent fixed fees. Protect your music, film, art, and creative works with Brim & Hull.">
+<meta name="description" content="Intellectual Property Law services with transparent fixed-fee pricing. Protect your creative work with Brim & Hull.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,48 +27,124 @@ body {
   color: var(--grey-dark);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
+  cursor: none;
+}
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 40px; height: 40px;
+  border: 1.5px solid var(--orange);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+.cursor-ring.hover { width: 60px; height: 60px; border-color: #fff; }
+@media (max-width: 900px) {
+  .cursor-dot, .cursor-ring { display: none; }
+  body { cursor: auto; }
 }
 
-/* ========== NAV ========== */
+/* Navigation */
 nav {
-  position: fixed; top: 0; left: 0; width: 100%;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
   padding: 1.5rem 4rem;
-  display: flex; justify-content: space-between; align-items: center;
-  z-index: 100; background: rgba(8, 53, 100, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: rgba(8, 53, 100, 0.95);
   backdrop-filter: blur(10px);
 }
 .nav-logo {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem; color: #fff; letter-spacing: 0.02em;
+  font-size: 1.5rem;
+  color: #fff;
   text-decoration: none;
+  letter-spacing: 0.02em;
 }
 .nav-logo span { color: var(--orange); }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
 .nav-links a {
-  color: rgba(255,255,255,0.85); text-decoration: none;
-  font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
-  font-weight: 500; transition: color 0.3s;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--orange);
+  transition: width 0.3s;
 }
 .nav-links a:hover { color: var(--orange); }
+.nav-links a:hover::after { width: 100%; }
 .nav-cta {
-  padding: 0.7rem 1.8rem; background: var(--orange); color: #fff;
-  text-decoration: none; font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px;
+  padding: 0.7rem 1.8rem;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
   transition: background 0.3s, transform 0.3s;
 }
 .nav-cta:hover { background: var(--orange-light); transform: translateY(-2px); }
 .hamburger {
-  display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 200;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 200;
 }
-.hamburger span { width: 28px; height: 2px; background: #fff; transition: all 0.3s; display: block; }
+.hamburger span {
+  width: 28px; height: 2px;
+  background: #fff;
+  transition: all 0.3s;
+  display: block;
+}
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 .mobile-menu {
-  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-  background: var(--navy-dark); z-index: 150; flex-direction: column;
-  align-items: center; justify-content: center; gap: 2rem;
-  opacity: 0; pointer-events: none; transition: opacity 0.4s;
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: var(--navy-dark);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
 }
 .mobile-menu.open { opacity: 1; pointer-events: all; }
 .mobile-menu a {
@@ -83,40 +159,46 @@ nav {
   .mobile-menu { display: flex; }
 }
 
-/* ========== PAGE HERO ========== */
+/* Page Hero */
 .page-hero {
-  padding: 10rem 4rem 5rem;
   background: var(--navy);
   color: #fff;
+  padding: 10rem 4rem 5rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.page-hero-bg {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(8rem, 18vw, 16rem);
-  color: rgba(255,255,255,0.02);
-  white-space: nowrap;
 }
 .page-hero .eyebrow {
-  font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 1.5rem; font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 .page-hero h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.15; margin-bottom: 1.5rem; position: relative; z-index: 2;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
 }
-.page-hero h1 em { color: var(--orange); font-style: italic; }
 .page-hero p {
-  font-size: 1rem; color: rgba(255,255,255,0.6);
-  max-width: 600px; margin: 0 auto; line-height: 1.8;
-  position: relative; z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  font-size: 1rem;
 }
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--orange);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.back-link:hover { color: var(--orange-light); }
 
-/* ========== SERVICES LIST ========== */
+/* Service Section */
 .svc-section {
   padding: 5rem 4rem;
   max-width: 900px;
@@ -124,51 +206,78 @@ nav {
 }
 .svc-section h2 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.8rem; color: var(--navy);
-  margin-bottom: 2rem; text-align: center;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 2rem;
+  text-align: center;
 }
-.svc-list { display: flex; flex-direction: column; gap: 0; }
+.svc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 .svc-row {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1.2rem 0;
-  border-bottom: 1px solid #e0e0e0;
-  transition: all 0.3s;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(15px);
 }
-.svc-row:first-child { border-top: 1px solid #e0e0e0; }
-.svc-row:hover { padding-left: 0.5rem; }
+.svc-row:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
 .svc-row-name {
-  font-size: 0.95rem; font-weight: 500; color: var(--grey-dark); flex: 1;
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--grey-dark);
 }
 .svc-row-price {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.05rem; color: var(--orange);
-  margin: 0 2rem; white-space: nowrap;
-  font-weight: 400;
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.95rem;
+  min-width: 100px;
+  text-align: right;
+  margin-right: 1.5rem;
 }
 .svc-row-btn {
-  padding: 0.5rem 1.4rem; background: var(--navy); color: #fff;
-  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; border: none; border-radius: 4px;
-  cursor: pointer; transition: background 0.3s; text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: background 0.3s, transform 0.3s;
   white-space: nowrap;
 }
-.svc-row-btn:hover { background: var(--orange); }
+.svc-row-btn:hover { background: var(--orange-light); transform: translateY(-2px); }
+@media (max-width: 600px) {
+  .svc-section { padding: 3rem 1.5rem; }
+  .svc-row { flex-wrap: wrap; gap: 0.5rem; }
+  .svc-row-price { min-width: auto; margin-right: 0; }
+  .svc-row-btn { width: 100%; text-align: center; margin-top: 0.5rem; }
+}
 
-/* ========== RETAINER BLOCK ========== */
+/* Retainer Block */
 .retainer-block {
-  padding: 5rem 4rem;
   background: var(--navy);
   color: #fff;
+  padding: 5rem 4rem;
   text-align: center;
 }
 .retainer-block h2 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.8rem; margin-bottom: 1rem; color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
-.retainer-block h2 em { color: var(--orange); font-style: italic; }
-.retainer-block p {
-  font-size: 0.95rem; color: rgba(255,255,255,0.6);
-  line-height: 1.8; max-width: 600px; margin: 0 auto 2rem;
+.retainer-block > p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
 }
 .retainer-options {
   display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
@@ -177,89 +286,107 @@ nav {
 .retainer-card {
   flex: 1; min-width: 240px;
   padding: 2rem; border: 1px solid rgba(218,144,48,0.3);
-  border-radius: 12px; transition: all 0.3s;
+  border-radius: 12px; text-align: left;
+  transition: border-color 0.3s, transform 0.3s;
 }
-.retainer-card:hover {
-  border-color: var(--orange); background: rgba(218,144,48,0.05);
-}
+.retainer-card:hover { border-color: var(--orange); transform: translateY(-4px); }
 .retainer-card h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--orange);
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--orange);
 }
 .retainer-card p {
-  font-size: 0.85rem; color: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 .retainer-card a {
-  display: inline-block; padding: 0.7rem 1.8rem;
-  background: var(--orange); color: #fff; text-decoration: none;
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; border-radius: 4px;
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
   transition: background 0.3s;
 }
 .retainer-card a:hover { background: var(--orange-light); }
-
-/* ========== BACK LINK ========== */
-.back-link {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  color: var(--orange); text-decoration: none; font-size: 0.8rem;
-  font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-  margin-bottom: 2rem; transition: gap 0.3s;
+@media (max-width: 600px) {
+  .retainer-block { padding: 3rem 1.5rem; }
 }
-.back-link:hover { gap: 0.8rem; }
 
-/* ========== FOOTER ========== */
+/* Footer */
 footer {
-  padding: 4rem; background: var(--navy-dark); color: rgba(255,255,255,0.4);
+  background: var(--navy-dark);
+  color: #fff;
+  padding: 4rem;
 }
 .footer-top {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem; max-width: 1200px; margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 .footer-brand {
-  font-family: 'DM Serif Display', serif; font-size: 1.4rem;
-  color: #fff; margin-bottom: 1rem;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 .footer-brand span { color: var(--orange); }
-.footer-desc { font-size: 0.85rem; line-height: 1.8; max-width: 300px; }
+.footer-desc {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-width: 300px;
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
 .footer-col h4 {
-  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 1.2rem; font-weight: 600;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--orange);
 }
 .footer-col a {
-  display: block; color: rgba(255,255,255,0.5); text-decoration: none;
-  font-size: 0.85rem; margin-bottom: 0.6rem; transition: color 0.3s;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.3s;
 }
 .footer-col a:hover { color: var(--orange); }
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 2rem; display: flex; justify-content: space-between;
-  max-width: 1200px; margin: 0 auto; font-size: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
 }
-
-/* ========== REVEAL ========== */
-.reveal-up { opacity: 0; transform: translateY(60px); }
-
-/* ========== RESPONSIVE ========== */
 @media (max-width: 900px) {
-  .page-hero { padding: 8rem 2rem 4rem; }
-  .svc-section { padding: 3rem 1.5rem; }
-  .svc-row { flex-wrap: wrap; gap: 0.5rem; }
-  .svc-row-price { margin: 0; }
-  .retainer-block { padding: 4rem 2rem; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  footer { padding: 3rem 1.5rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
-@media (max-width: 500px) {
-  .footer-top { grid-template-columns: 1fr; }
-}
+
+/* Reveal animation */
+.reveal-up { opacity: 0; transform: translateY(20px); }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
 <nav>
-  <a href="index.html" class="nav-logo">Brim<span>&</span>Hull</a>
+  <a href="index.html" class="nav-logo">Brim<span>&amp;</span>Hull</a>
   <ul class="nav-links">
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#services">Services</a></li>
@@ -272,61 +399,56 @@ footer {
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html#about" onclick="closeMobile()">About</a>
   <a href="index.html#services" onclick="closeMobile()">Services</a>
   <a href="index.html#faq" onclick="closeMobile()">FAQ</a>
   <a href="index.html#contact" onclick="closeMobile()">Contact</a>
-  <a href="https://calendly.com" target="_blank" style="color:var(--orange);">Book a Call</a>
+  <a href="https://calendly.com" target="_blank" onclick="closeMobile()">Book a Call</a>
 </div>
 
-<!-- Page Hero -->
 <section class="page-hero">
-  <div class="page-hero-bg">IP LAW</div>
-  <div class="eyebrow">Intellectual Property Law</div>
-  <h1>Protect what you <em>create</em></h1>
-  <p>From music rights and licensing to publishing deals and talent agreements — we build the legal framework that keeps your creative work safe and your revenue flowing.</p>
+  <div class="eyebrow reveal-up">Intellectual Property Law</div>
+  <h1 class="reveal-up">Protect what you create</h1>
+  <p class="reveal-up">From music rights and licensing to publishing deals and talent agreements &mdash; we build the legal framework that keeps your creative work safe and your revenue flowing.</p>
+  <a href="index.html#services" class="back-link reveal-up">&larr; Back to Services</a>
 </section>
 
-<!-- Services List -->
 <section class="svc-section">
-  <a href="index.html#services" class="back-link">← Back to Services</a>
-  <h2>IP Law Services & Pricing</h2>
-
+  <h2 class="reveal-up">IP Law Services &amp; Pricing</h2>
   <div class="svc-list">
+    <div class="svc-row reveal-up"><span class="svc-row-name">Splitsheet</span><span class="svc-row-price">₦30,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Legal Consultation</span><span class="svc-row-price">₦50,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Dispute Advice</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Letter of Demand</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Cease & Desist Letter</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Featured Artist Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Producer Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Management Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Distribution Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Promoters Agreement (Live Events)</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Collaboration Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Dispute Advice</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Legal Consultation</span><span class="svc-row-price">₦50,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Letter of Demand</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Licence Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Music Use Licensing</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Non-Disclosure Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Talent Release Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Cease & Desist Letter</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">IP Assignment Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Venue Rental Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Collaboration Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Licence Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Non-Disclosure Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Production Agreement (Live Events)</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Co-Organizer Agreement (Live Events)</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Partnership Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Splitsheet</span><span class="svc-row-price">₦30,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Multiple Rights Agreement</span><span class="svc-row-price">₦250,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Publishing Agreement (Music)</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Publishing Agreement (Books)</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Trademark Registration</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Label Service Agreement</span><span class="svc-row-price">₦250,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
     <div class="svc-row reveal-up"><span class="svc-row-name">Talent Development Agreement</span><span class="svc-row-price">₦250,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Venue Rental Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+    <div class="svc-row reveal-up"><span class="svc-row-name">Multiple Rights Agreement</span><span class="svc-row-price">₦300,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
   </div>
 </section>
 
-<!-- Retainer -->
 <section class="retainer-block">
-  <h2>IP Law <em>Retainer</em> Packages</h2>
-  <p>Ongoing legal support for your creative business. Our retainer packages are custom-scoped to your industry, growth stage, and legal needs — so you always have a lawyer in your corner.</p>
+  <h2 class="reveal-up">IP Law Retainer Packages</h2>
+  <p class="reveal-up">Ongoing legal support for your creative business. Our retainer packages are custom-scoped to your industry, growth stage, and legal needs &mdash; so you always have a lawyer in your corner.</p>
   <div class="retainer-options">
     <div class="retainer-card reveal-up">
       <h3>Monthly Retainer</h3>
@@ -335,17 +457,16 @@ footer {
     </div>
     <div class="retainer-card reveal-up">
       <h3>3-Month Retainer</h3>
-      <p>Best for projects with a defined timeline — album rollouts, film productions, or business launches.</p>
+      <p>Best for projects with a defined timeline &mdash; album rollouts, film productions, or business launches.</p>
       <a href="index.html#contact">Get a Quote</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-brand">Brim<span>&</span>Hull</div>
+      <div class="footer-brand">Brim<span>&amp;</span>Hull</div>
       <p class="footer-desc">The law firm built for Africa's creative economy. Fixed-fee legal services for creators, entrepreneurs, and the businesses that power culture.</p>
     </div>
     <div class="footer-col">
@@ -368,7 +489,7 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Brim & Hull Legal Practitioners. All rights reserved.</span>
+    <span>&copy; 2026 Brim &amp; Hull Legal Practitioners. All rights reserved.</span>
     <span>Designed by Ayanfe</span>
   </div>
 </footer>
@@ -386,6 +507,20 @@ function closeMobile() {
   mobileMenu.classList.remove('open');
 }
 
+// Custom cursor
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+document.addEventListener('mousemove', e => {
+  dot.style.left = e.clientX + 'px';
+  dot.style.top = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+});
+
 // GSAP scroll reveals
 gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray('.reveal-up').forEach(el => {
@@ -397,10 +532,11 @@ gsap.utils.toArray('.reveal-up').forEach(el => {
 
 // Stagger service rows
 gsap.utils.toArray('.svc-row').forEach((row, i) => {
-  gsap.fromTo(row, { opacity: 0, x: -20 }, {
-    opacity: 1, x: 0, duration: 0.5, delay: i * 0.03,
-    scrollTrigger: { trigger: row, start: 'top 90%' }
-  });
+  gsap.fromTo(row,
+    { opacity: 0, x: -20 },
+    { opacity: 1, x: 0, duration: 0.5, delay: i * 0.03,
+       scrollTrigger: { trigger: row, start: 'top 90%' }
+    });
 });
 </script>
 </body>

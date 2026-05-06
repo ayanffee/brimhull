@@ -1487,6 +1487,11 @@ footer {
       <div class="testimonial-author">Ayo Durotoye</div>
       <div class="testimonial-role">Talent Manager</div>
     </div>
+    <div class="testimonial-card reveal-up">
+      <p class="testimonial-text">Working with Tobe was a game changer for our Files '26 project, especially with the complexity of handling multiple producers, songwriters, and artists all on one body of work. From split sheets to licensing agreements, she made sure every contributor was properly represented and protected. She didn't just handle the legal stuff &mdash; she helped us think through things we hadn't even considered. The level of detail, the turnaround time, and the way she communicated everything clearly made the whole process smooth. If you're in the music space and you're not working with Brim&amp;Hull, you're leaving yourself exposed.</p>
+      <div class="testimonial-author">Kevin</div>
+      <div class="testimonial-role">A&amp;R, Files '26</div>
+    </div>
   </div>
 </section>
 
@@ -1500,6 +1505,47 @@ footer {
   <div class="contact-buttons reveal-up" style="margin-top: 2.5rem;">
     <a href="get-in-touch.html" class="btn-cta-primary">Get in Touch</a>
   </div>
+
+  <form class="contact-form reveal-up" onsubmit="event.preventDefault(); this.querySelector('.contact-form-success').style.display='flex'; this.querySelector('.contact-form-fields').style.display='none';">
+    <div class="contact-form-fields">
+      <div class="contact-form-row">
+        <div class="contact-form-group">
+          <label for="contactName">Full Name</label>
+          <input type="text" id="contactName" name="name" placeholder="Your name" required>
+        </div>
+        <div class="contact-form-group">
+          <label for="contactEmail">Email Address</label>
+          <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="contact-form-row">
+        <div class="contact-form-group">
+          <label for="contactPhone">Phone Number</label>
+          <input type="tel" id="contactPhone" name="phone" placeholder="+234 800 000 0000">
+        </div>
+        <div class="contact-form-group">
+          <label for="contactService">Service</label>
+          <select id="contactService" name="service">
+            <option value="" disabled selected>What do you need help with?</option>
+            <option value="ip">Intellectual Property Law</option>
+            <option value="commercial">Commercial Law</option>
+            <option value="retainer">Legal Officer Retainer</option>
+            <option value="other">Something Else</option>
+          </select>
+        </div>
+      </div>
+      <div class="contact-form-group" style="width:100%;">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </div>
+    <div class="contact-form-success" style="display:none; flex-direction:column; align-items:center; gap:1rem; padding:3rem; text-align:center;">
+      <div style="font-size:3rem;">&#10003;</div>
+      <h3 style="color:var(--navy); font-family:'DM Serif Display',serif;">Message Sent!</h3>
+      <p style="color:var(--text-body);">We'll get back to you within 24 hours.</p>
+    </div>
+  </form>
 </section>
 
 <!-- Footer -->

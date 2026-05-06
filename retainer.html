@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Commercial Law Services & Pricing — Brim & Hull</title>
-<meta name="description" content="Commercial Law services with transparent fixed-fee pricing. Build and protect your business with Brim & Hull.">
+<title>Legal Officer Retainer — Brim & Hull</title>
+<meta name="description" content="Ongoing legal support for your creative business. Monthly, quarterly, and 6-month retainer packages from Brim & Hull.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,33 +41,169 @@ nav { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 4rem; displ
 .mobile-menu a { font-family: "DM Serif Display", serif; font-size: 2rem; color: #fff; text-decoration: none; transition: color 0.3s; }
 .mobile-menu a:hover { color: var(--orange); }
 @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .mobile-menu { display: flex; } }
+
+/* Page Hero */
 .page-hero { background: var(--navy); color: #fff; padding: 10rem 4rem 5rem; text-align: center; }
 .page-hero .eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; font-weight: 600; }
 .page-hero h1 { font-family: "DM Serif Display", serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1.5rem; line-height: 1.15; }
 .page-hero p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.7); line-height: 1.7; font-size: 1rem; }
 .back-link { display: inline-block; margin-top: 2rem; color: var(--orange); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
 .back-link:hover { color: var(--orange-light); }
-.svc-section { padding: 5rem 4rem; max-width: 900px; margin: 0 auto; }
-.svc-section h2 { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 2rem; text-align: center; }
-.svc-list { display: flex; flex-direction: column; gap: 0; }
-.svc-row { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); opacity: 0; transform: translateY(15px); }
-.svc-row:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
-.svc-row-name { flex: 1; font-weight: 500; font-size: 0.95rem; color: var(--grey-dark); }
-.svc-row-price { font-weight: 700; color: var(--navy); font-size: 0.95rem; min-width: 100px; text-align: right; margin-right: 1.5rem; }
-.svc-row-btn { padding: 0.5rem 1.2rem; background: var(--orange); color: #fff; text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 4px; transition: background 0.3s, transform 0.3s; white-space: nowrap; }
-.svc-row-btn:hover { background: var(--orange-light); transform: translateY(-2px); }
-@media (max-width: 600px) { .svc-section { padding: 3rem 1.5rem; } .svc-row { flex-wrap: wrap; gap: 0.5rem; } .svc-row-price { min-width: auto; margin-right: 0; } .svc-row-btn { width: 100%; text-align: center; margin-top: 0.5rem; } }
-.retainer-block { background: var(--navy); color: #fff; padding: 5rem 4rem; text-align: center; }
-.retainer-block h2 { font-family: "DM Serif Display", serif; font-size: 1.8rem; margin-bottom: 1rem; }
-.retainer-block > p { max-width: 600px; margin: 0 auto 2rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
-.retainer-options { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto; }
-.retainer-card { flex: 1; min-width: 240px; padding: 2rem; border: 1px solid rgba(218,144,48,0.3); border-radius: 12px; text-align: left; transition: border-color 0.3s, transform 0.3s; }
-.retainer-card:hover { border-color: var(--orange); transform: translateY(-4px); }
-.retainer-card h3 { font-family: "DM Serif Display", serif; font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--orange); }
-.retainer-card p { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 1.5rem; }
-.retainer-card a { display: inline-block; padding: 0.6rem 1.5rem; background: var(--orange); color: #fff; text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; transition: background 0.3s; }
-.retainer-card a:hover { background: var(--orange-light); }
-@media (max-width: 600px) { .retainer-block { padding: 3rem 1.5rem; } }
+
+/* Retainer Tiers */
+.retainer-section {
+  padding: 5rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.retainer-section h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.retainer-section > p {
+  max-width: 650px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+.retainer-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.tier-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.tier-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(8,53,100,0.1);
+  border-color: var(--orange);
+}
+.tier-card.featured {
+  border-color: var(--orange);
+  position: relative;
+}
+.tier-card.featured::before {
+  content: "Most Popular";
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+.tier-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.tier-name {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.5rem;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.tier-desc {
+  color: var(--text-body);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.tier-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.tier-features li {
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  color: var(--grey-dark);
+  position: relative;
+  padding-left: 1.5rem;
+}
+.tier-features li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-weight: 700;
+}
+.tier-cta {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  text-align: center;
+  transition: background 0.3s, transform 0.3s;
+}
+.tier-cta:hover { background: var(--orange-light); transform: translateY(-2px); }
+@media (max-width: 900px) {
+  .retainer-tiers { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .retainer-section { padding: 3rem 1.5rem; }
+}
+
+/* Why Retainer */
+.why-retainer {
+  background: var(--navy);
+  color: #fff;
+  padding: 5rem 4rem;
+  text-align: center;
+}
+.why-retainer h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.why-item h3 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.1rem;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+.why-item p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+@media (max-width: 700px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .why-retainer { padding: 3rem 1.5rem; }
+}
+
+/* Footer */
 footer { background: var(--navy-dark); color: #fff; padding: 4rem; }
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
 .footer-brand { font-family: "DM Serif Display", serif; font-size: 1.8rem; margin-bottom: 1rem; }
@@ -106,40 +242,72 @@ footer { background: var(--navy-dark); color: #fff; padding: 4rem; }
 </div>
 
 <section class="page-hero">
-  <div class="eyebrow reveal-up">Commercial Law</div>
-  <h1 class="reveal-up">Build your business on solid ground</h1>
-  <p class="reveal-up">Company registration, trademark protection, shareholder agreements, and everything you need to structure, protect, and scale your creative enterprise.</p>
+  <div class="eyebrow reveal-up">Legal Officer Retainer</div>
+  <h1 class="reveal-up">A lawyer in your corner, always</h1>
+  <p class="reveal-up">Ongoing legal support custom-scoped to your industry, growth stage, and needs. Stop paying per-document and start building a real legal partnership.</p>
   <a href="index.html#services" class="back-link reveal-up">&larr; Back to Services</a>
 </section>
 
-<section class="svc-section">
-  <h2 class="reveal-up">Commercial Law Services &amp; Pricing</h2>
-  <div class="svc-list">
-    <div class="svc-row reveal-up"><span class="svc-row-name">Legal Consultation</span><span class="svc-row-price">₦50,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Letter of Demand</span><span class="svc-row-price">₦100,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Business Registration (Business Name)</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Memorandum of Understanding</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Service Level Agreement</span><span class="svc-row-price">₦150,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Company Registration (Private Limited)</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Revenue Sharing Agreement</span><span class="svc-row-price">₦200,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Joint Venture Agreement</span><span class="svc-row-price">₦250,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
-    <div class="svc-row reveal-up"><span class="svc-row-name">Shareholders Agreement</span><span class="svc-row-price">₦250,000</span><a href="index.html#contact" class="svc-row-btn">Get Started</a></div>
+<section class="retainer-section">
+  <h2 class="reveal-up">Choose Your Retainer</h2>
+  <p class="reveal-up">Every retainer includes contract drafting and review, legal advisory calls, compliance checks, and priority response times. Pick the commitment that fits your pace.</p>
+  <div class="retainer-tiers">
+    <div class="tier-card reveal-up">
+      <div class="tier-label">Starter</div>
+      <div class="tier-name">1-Month Retainer</div>
+      <p class="tier-desc">Perfect for creators and businesses who want to try ongoing legal support before committing long-term. Full access to our legal team for 30 days.</p>
+      <ul class="tier-features">
+        <li>Contract drafting &amp; review</li>
+        <li>Legal advisory calls</li>
+        <li>Compliance guidance</li>
+        <li>Priority response within 48hrs</li>
+      </ul>
+      <a href="index.html#contact" class="tier-cta">Get a Quote</a>
+    </div>
+    <div class="tier-card featured reveal-up">
+      <div class="tier-label">Recommended</div>
+      <div class="tier-name">3-Month Retainer</div>
+      <p class="tier-desc">Ideal for album rollouts, film productions, business launches, or any project with a defined timeline. Deeper partnership, better rates.</p>
+      <ul class="tier-features">
+        <li>Everything in Monthly</li>
+        <li>Dedicated legal advisor</li>
+        <li>Unlimited contract reviews</li>
+        <li>Priority response within 24hrs</li>
+        <li>Quarterly legal health check</li>
+      </ul>
+      <a href="index.html#contact" class="tier-cta">Get a Quote</a>
+    </div>
+    <div class="tier-card reveal-up">
+      <div class="tier-label">Best Value</div>
+      <div class="tier-name">6-Month Retainer</div>
+      <p class="tier-desc">For established creators and companies scaling fast. Maximum coverage, deepest discount, and a legal partner who knows your business inside out.</p>
+      <ul class="tier-features">
+        <li>Everything in 3-Month</li>
+        <li>Dedicated senior legal advisor</li>
+        <li>Proactive risk assessment</li>
+        <li>Priority response within 12hrs</li>
+        <li>Bi-monthly strategy sessions</li>
+        <li>Best per-month rate</li>
+      </ul>
+      <a href="index.html#contact" class="tier-cta">Get a Quote</a>
+    </div>
   </div>
 </section>
 
-<section class="retainer-block">
-  <h2 class="reveal-up">Commercial Law Retainer Packages</h2>
-  <p class="reveal-up">Stay covered as your business grows. Our commercial retainer packages provide ongoing legal support for contracts, compliance, and corporate advisory &mdash; so you can focus on building.</p>
-  <div class="retainer-options">
-    <div class="retainer-card reveal-up">
-      <h3>Monthly Retainer</h3>
-      <p>Ongoing contract reviews, compliance checks, and corporate advisory for businesses that need consistent legal support.</p>
-      <a href="index.html#contact">Get a Quote</a>
+<section class="why-retainer">
+  <h2 class="reveal-up">Why a retainer?</h2>
+  <div class="why-grid">
+    <div class="why-item reveal-up">
+      <h3>Predictable costs</h3>
+      <p>No surprise bills. One flat fee covers your legal needs for the entire retainer period.</p>
     </div>
-    <div class="retainer-card reveal-up">
-      <h3>3-Month Retainer</h3>
-      <p>Ideal for new ventures, funding rounds, or expansion phases that need focused legal partnership.</p>
-      <a href="index.html#contact">Get a Quote</a>
+    <div class="why-item reveal-up">
+      <h3>Faster turnaround</h3>
+      <p>Retainer clients get priority. Your contracts and questions jump to the front of the queue.</p>
+    </div>
+    <div class="why-item reveal-up">
+      <h3>Deeper understanding</h3>
+      <p>The longer we work together, the better we understand your business &mdash; which means sharper, faster advice.</p>
     </div>
   </div>
 </section>
@@ -170,7 +338,7 @@ document.addEventListener("mousemove", e => { dot.style.left = e.clientX + "px";
 document.querySelectorAll("a, button").forEach(el => { el.addEventListener("mouseenter", () => ring.classList.add("hover")); el.addEventListener("mouseleave", () => ring.classList.remove("hover")); });
 gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray(".reveal-up").forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } }); });
-gsap.utils.toArray(".svc-row").forEach((row, i) => { gsap.fromTo(row, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, delay: i * 0.03, scrollTrigger: { trigger: row, start: "top 90%" } }); });
+gsap.utils.toArray(".tier-card").forEach((card, i) => { gsap.to(card, { opacity: 1, y: 0, duration: 0.7, delay: i * 0.15, ease: "power3.out", scrollTrigger: { trigger: ".retainer-tiers", start: "top 80%" } }); });
 </script>
 </body>
 </html>
