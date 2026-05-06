@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get in Touch — Brim&Hull</title>
+<meta name="description" content="Chat with us through our form, or book a free meeting to talk through what you need.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #083564; --navy-dark: #05243f; --orange: #DA9030;
+  --orange-light: #f0b060; --white: #E9E9E9;
+  --grey-dark: #282828; --grey-light: #f5f5f3; --text-body: #555;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--grey-dark); font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%;
+  padding: 1.5rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 100; background: rgba(8, 53, 100, 0.95); backdrop-filter: blur(10px);
+}
+.nav-logo-link { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #fff; }
+.nav-logo span { color: var(--orange); }
+.nav-descriptor { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 500; }
+.nav-menu-btn {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 0.7rem 1.4rem; background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.4); border-radius: 999px;
+  color: #fff; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+}
+.nav-menu-btn:hover { background: var(--orange); border-color: var(--orange); }
+.nav-menu-icon { display: inline-flex; flex-direction: column; gap: 4px; }
+.nav-menu-icon span { display: block; width: 18px; height: 1.5px; background: #fff; }
+
+.site-menu {
+  position: fixed; top: 0; right: 0; width: min(440px, 92vw); height: 100vh;
+  background: var(--navy-dark); z-index: 200;
+  padding: 6rem 3rem 3rem;
+  transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.77,0,0.18,1);
+  overflow-y: auto;
+}
+.site-menu.open { transform: translateX(0); }
+.site-menu-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #fff; font-size: 2.2rem; cursor: pointer; line-height: 1; }
+.site-menu-close:hover { color: var(--orange); }
+.site-menu-inner { display: flex; flex-direction: column; gap: 0.4rem; }
+.site-menu-group { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.site-menu-toggle { width: 100%; background: none; border: none; display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 0; font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: #fff; cursor: pointer; text-align: left; }
+.site-menu-toggle:hover { color: var(--orange); }
+.site-menu-chev { font-size: 1.3rem; color: var(--orange); transition: transform 0.3s; }
+.site-menu-group.open .site-menu-chev { transform: rotate(45deg); }
+.site-menu-sub { max-height: 0; overflow: hidden; transition: max-height 0.4s; display: flex; flex-direction: column; padding-left: 0.5rem; }
+.site-menu-group.open .site-menu-sub { max-height: 400px; padding-bottom: 0.8rem; }
+.site-menu-sub a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.92rem; padding: 0.5rem 0; transition: color 0.3s, padding 0.3s; }
+.site-menu-sub a:hover { color: var(--orange); padding-left: 0.5rem; }
+.site-menu-link { display: block; padding: 1.1rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: #fff; text-decoration: none; transition: color 0.3s; }
+.site-menu-link:hover { color: var(--orange); }
+.site-menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+.site-menu-backdrop.open { opacity: 1; pointer-events: all; }
+
+/* Page */
+.page-wrap {
+  flex: 1;
+  padding: 11rem 4rem 6rem;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.page-eyebrow { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.5rem; font-weight: 600; }
+.page-h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin-bottom: 1rem; max-width: 900px;
+}
+.page-h1 em { color: var(--orange); font-style: italic; }
+.page-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.65);
+  max-width: 600px; margin-bottom: 4rem; line-height: 1.7;
+}
+
+.choice-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.6rem; max-width: 880px; width: 100%;
+}
+.choice-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 3rem 2.5rem;
+  text-decoration: none; color: #fff;
+  text-align: center;
+  transition: all 0.4s;
+  display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+}
+.choice-card:hover { background: rgba(218,144,48,0.08); border-color: var(--orange); transform: translateY(-6px); }
+.choice-icon {
+  width: 64px; height: 64px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+}
+.choice-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+}
+.choice-desc {
+  font-size: 0.95rem; color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+.choice-go {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-weight: 600; color: var(--orange); margin-top: 0.5rem;
+}
+
+/* Form (when chat-with-us toggled) */
+.form-wrap {
+  display: none; max-width: 720px; width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px; padding: 3rem;
+  text-align: left; margin-top: 2rem;
+}
+.form-wrap.open { display: block; }
+.form-wrap label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 0.5rem; }
+.form-wrap input, .form-wrap select, .form-wrap textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit; font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.form-wrap input:focus, .form-wrap select:focus, .form-wrap textarea:focus {
+  outline: none; border-color: var(--orange); background: rgba(218,144,48,0.05);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-submit {
+  padding: 1rem 2.2rem; background: var(--orange); color: #fff;
+  border: none; border-radius: 999px;
+  font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; transition: background 0.3s, transform 0.3s;
+}
+.form-submit:hover { background: var(--orange-light); transform: translateY(-2px); }
+.form-success { display: none; padding: 2rem 0; text-align: center; }
+.form-success.shown { display: block; }
+.form-success h3 { font-family: 'DM Serif Display', serif; color: var(--orange); font-size: 1.6rem; margin-bottom: 1rem; }
+
+.back-toggle { display: none; margin-top: 1.5rem; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
+.back-toggle.shown { display: inline-block; }
+
+/* Footer */
+footer {
+  padding: 4rem; background: var(--navy-dark); color: rgba(255,255,255,0.4);
+}
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.4fr; gap: 2.5rem; max-width: 1280px; margin: 0 auto 3rem; }
+.footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: 1rem; }
+.footer-brand span { color: var(--orange); }
+.footer-desc { font-size: 0.85rem; line-height: 1.8; max-width: 300px; }
+.footer-col h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.2rem; font-weight: 600; }
+.footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; transition: color 0.3s; }
+.footer-col a:hover { color: var(--orange); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; max-width: 1280px; margin: 0 auto; font-size: 0.8rem; }
+
+@media (max-width: 760px) {
+  nav { padding: 1rem 1.5rem; }
+  .page-wrap { padding: 8rem 1.5rem 4rem; }
+  .choice-grid { grid-template-columns: 1fr; }
+  .form-wrap { padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+}
+@media (max-width: 500px) { .footer-top { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo-link">
+    <div class="nav-logo">Brim<span>&</span>Hull</div>
+    <div class="nav-descriptor">A Law Firm</div>
+  </a>
+  <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open menu">
+    <span class="nav-menu-label">Menu</span>
+    <span class="nav-menu-icon"><span></span><span></span></span>
+  </button>
+</nav>
+
+<div class="site-menu" id="siteMenu">
+  <button class="site-menu-close" id="siteMenuClose" aria-label="Close menu">×</button>
+  <div class="site-menu-inner">
+    <div class="site-menu-group">
+      <button class="site-menu-toggle">Services we offer <span class="site-menu-chev">+</span></button>
+      <div class="site-menu-sub">
+        <a href="ip-law.html">Intellectual Property Law</a>
+        <a href="commercial-law.html">Commercial Law</a>
+        <a href="retainer.html">Legal Officer Retainer</a>
+      </div>
+    </div>
+    <div class="site-menu-group">
+      <button class="site-menu-toggle">Sectors we service <span class="site-menu-chev">+</span></button>
+      <div class="site-menu-sub">
+        <a href="index.html#sectors">Music</a>
+        <a href="index.html#sectors">Film</a>
+        <a href="index.html#sectors">Live Events</a>
+        <a href="index.html#sectors">Entertainment &amp; Culture</a>
+        <a href="index.html#sectors">Creative Businesses</a>
+      </div>
+    </div>
+    <a class="site-menu-link" href="blog.html">Blog</a>
+    <a class="site-menu-link" href="get-in-touch.html">Get in Touch</a>
+  </div>
+</div>
+
+<!-- Page -->
+<section class="page-wrap">
+  <div class="page-eyebrow">Get in Touch</div>
+  <h1 class="page-h1">Two ways to <em>start a conversation</em></h1>
+  <p class="page-sub">Send us the details and we'll come back to you, or pick a time that works and we'll meet on a call. Either way, no fluff — just clear next steps.</p>
+
+  <div class="choice-grid" id="choiceGrid">
+    <a href="#" class="choice-card" id="chatChoice">
+      <div class="choice-icon">✉</div>
+      <div class="choice-title">Chat with us</div>
+      <div class="choice-desc">Send us a quick brief through our form. We'll reply within 24 hours with next steps.</div>
+      <div class="choice-go">Open form →</div>
+    </a>
+    <a href="https://calendly.com" target="_blank" rel="noopener" class="choice-card">
+      <div class="choice-icon">⌚</div>
+      <div class="choice-title">Book a free meeting</div>
+      <div class="choice-desc">Pick a time that works for you. A 30-minute call to talk through your situation — no charge.</div>
+      <div class="choice-go">View calendar →</div>
+    </a>
+  </div>
+
+  <!-- Inline form (toggled) -->
+  <div class="form-wrap" id="formWrap">
+    <form onsubmit="event.preventDefault(); document.getElementById('formFields').style.display='none'; document.getElementById('formSuccess').classList.add('shown');">
+      <div id="formFields">
+        <div class="form-row">
+          <div>
+            <label>Full name</label>
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="+234...">
+          </div>
+          <div>
+            <label>Service interested in</label>
+            <select name="service">
+              <option value="" disabled selected>Pick one</option>
+              <option>Intellectual Property Law</option>
+              <option>Commercial Law</option>
+              <option>Legal Officer Retainer</option>
+              <option>General Consultation</option>
+            </select>
+          </div>
+        </div>
+        <label>Tell us about your project</label>
+        <textarea name="message" rows="5" placeholder="Briefly describe what you need help with..."></textarea>
+        <button type="submit" class="form-submit">Send message</button>
+      </div>
+      <div id="formSuccess" class="form-success">
+        <h3>Message sent!</h3>
+        <p style="color:rgba(255,255,255,0.7);">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+      </div>
+    </form>
+  </div>
+  <button class="back-toggle" id="backToggle">← Back to options</button>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Brim<span>&</span>Hull</div>
+      <p class="footer-desc">A law firm built for Africa's creative economy. Fixed-fee legal services for creators, entrepreneurs, and the businesses that power culture.</p>
+    </div>
+    <div class="footer-col">
+      <h4>The Firm</h4>
+      <a href="about.html">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="about.html#team">Team</a>
+    </div>
+    <div class="footer-col">
+      <h4>Sectors</h4>
+      <a href="index.html#sectors">Music</a>
+      <a href="index.html#sectors">Film</a>
+      <a href="index.html#sectors">Live Events</a>
+      <a href="index.html#sectors">Entertainment &amp; Culture</a>
+      <a href="index.html#sectors">Creative Businesses</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="ip-law.html">Intellectual Property Law</a>
+      <a href="commercial-law.html">Commercial Law</a>
+      <a href="retainer.html">Legal Officer Retainer</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact us</h4>
+      <a href="mailto:contact@brimandhull.com">contact@brimandhull.com</a>
+      <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Brim&amp;Hull Legal Practitioners. All rights reserved.</span>
+    <span>Designed by Ayanfe</span>
+  </div>
+</footer>
+
+<script>
+// Site menu
+(function() {
+  const menuBtn = document.getElementById('navMenuBtn');
+  const siteMenu = document.getElementById('siteMenu');
+  const siteMenuClose = document.getElementById('siteMenuClose');
+  if (!menuBtn || !siteMenu) return;
+  const backdrop = document.createElement('div');
+  backdrop.className = 'site-menu-backdrop';
+  document.body.appendChild(backdrop);
+  function openMenu() { siteMenu.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { siteMenu.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+  menuBtn.addEventListener('click', openMenu);
+  if (siteMenuClose) siteMenuClose.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  document.querySelectorAll('.site-menu-link, .site-menu-sub a').forEach(a => a.addEventListener('click', closeMenu));
+  document.querySelectorAll('.site-menu-toggle').forEach(t => t.addEventListener('click', () => t.parentElement.classList.toggle('open')));
+})();
+
+// Toggle form / choices
+const chatChoice = document.getElementById('chatChoice');
+const choiceGrid = document.getElementById('choiceGrid');
+const formWrap = document.getElementById('formWrap');
+const backToggle = document.getElementById('backToggle');
+chatChoice.addEventListener('click', e => {
+  e.preventDefault();
+  choiceGrid.style.display = 'none';
+  formWrap.classList.add('open');
+  backToggle.classList.add('shown');
+  formWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+backToggle.addEventListener('click', () => {
+  choiceGrid.style.display = 'grid';
+  formWrap.classList.remove('open');
+  backToggle.classList.remove('shown');
+  document.getElementById('formFields').style.display = '';
+  document.getElementById('formSuccess').classList.remove('shown');
+});
+</script>
+</body>
+</html>
