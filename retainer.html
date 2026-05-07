@@ -50,6 +50,66 @@ nav { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 4rem; displ
 .back-link { display: inline-block; margin-top: 2rem; color: var(--orange); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
 .back-link:hover { color: var(--orange-light); }
 
+/* Process Section */
+.process-section {
+  padding: 5rem 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.process-section h2 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.process-section > p {
+  text-align: center;
+  color: var(--text-body);
+  margin-bottom: 3rem;
+  font-size: 0.95rem;
+}
+.process-steps {
+  display: grid;
+  gap: 2.5rem;
+  position: relative;
+}
+.process-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.step-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--orange);
+  font-family: "DM Serif Display", serif;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-content h3 {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+.step-content p {
+  color: var(--text-body);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+@media (max-width: 700px) {
+  .process-section { padding: 3rem 1.5rem; }
+  .process-step { grid-template-columns: 50px 1fr; gap: 1rem; }
+  .step-number { width: 44px; height: 44px; font-size: 1.2rem; }
+}
+
 /* Retainer Tiers */
 .retainer-section {
   padding: 5rem 4rem;
@@ -243,9 +303,37 @@ footer { background: var(--navy-dark); color: #fff; padding: 4rem; }
 
 <section class="page-hero">
   <div class="eyebrow reveal-up">Legal Officer Retainer</div>
-  <h1 class="reveal-up">A lawyer in your corner, always</h1>
-  <p class="reveal-up">Ongoing legal support custom-scoped to your industry, growth stage, and needs. Stop paying per-document and start building a real legal partnership.</p>
+  <h1 class="reveal-up">Your In-House Legal Advantage</h1>
+  <p class="reveal-up">Our Professional Retainer Service provides your business with dedicated, ongoing legal support for a flat monthly fee. We offer the precision of an in-house legal counsel with the commercial intelligence of an industry player.</p>
   <a href="index.html#services" class="back-link reveal-up">&larr; Back to Services</a>
+</section>
+
+<section class="process-section">
+  <h2 class="reveal-up">How It Works</h2>
+  <p class="reveal-up">A clear, structured process from onboarding to ongoing support.</p>
+  <div class="process-steps">
+    <div class="process-step reveal-up">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Onboarding</h3>
+        <p>We start by getting oriented with your current operations and immediate goals. We pinpoint areas where your business is exposed and identify the legal structures required to support your goals. By the end of this stage, we transition from &ldquo;getting to know you&rdquo; into a clear action plan of what your business needs right now to move forward securely.</p>
+      </div>
+    </div>
+    <div class="process-step reveal-up">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Execution</h3>
+        <p>Using the action plan as our guide, we begin implementation. This is where we do the heavy lifting: drafting bespoke contracts, securing your IP ownership, and negotiating terms that protect your interests. We deliver on the precision we promised by building custom legal structures that address your immediate needs and support your long-term growth.</p>
+      </div>
+    </div>
+    <div class="process-step reveal-up">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Maintenance</h3>
+        <p>Once those legal structures are built, we stay in the room. Through monthly check-ins and active monitoring, we provide the ongoing support needed to keep your business compliant. We stay in the loop of your operations, giving you the security of a legal desk without the overhead of a full-time hire.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="retainer-section">
@@ -255,10 +343,10 @@ footer { background: var(--navy-dark); color: #fff; padding: 4rem; }
     <div class="tier-card reveal-up">
       <div class="tier-label">Starter</div>
       <div class="tier-name">1-Month Retainer</div>
-      <p class="tier-desc">Perfect for creators and businesses who want to try ongoing legal support before committing long-term. Full access to our legal team for 30 days.</p>
+      <p class="tier-desc">Ideal for creators and businesses needing immediate foundational support without long-term commitment. Focused on your most urgent needs.</p>
       <ul class="tier-features">
-        <li>Contract drafting &amp; review</li>
-        <li>Legal advisory calls</li>
+        <li>Two standard contracts</li>
+        <li>Dedicated advisory calls</li>
         <li>Compliance guidance</li>
         <li>Priority response within 48hrs</li>
       </ul>
@@ -267,23 +355,23 @@ footer { background: var(--navy-dark); color: #fff; padding: 4rem; }
     <div class="tier-card featured reveal-up">
       <div class="tier-label">Recommended</div>
       <div class="tier-name">3-Month Retainer</div>
-      <p class="tier-desc">Ideal for album rollouts, film productions, business launches, or any project with a defined timeline. Deeper partnership, better rates.</p>
+      <p class="tier-desc">Ideal for creators and businesses executing a specific time-limited project or campaign. A project-based legal desk with expanded contract support and priority advisory calls.</p>
       <ul class="tier-features">
         <li>Everything in Monthly</li>
-        <li>Dedicated legal advisor</li>
-        <li>Unlimited contract reviews</li>
+        <li>Expanded contract support</li>
+        <li>Priority advisory calls</li>
         <li>Priority response within 24hrs</li>
-        <li>Quarterly legal health check</li>
+        <li>Project-scope legal strategy</li>
       </ul>
       <a href="index.html#contact" class="tier-cta">Get a Quote</a>
     </div>
     <div class="tier-card reveal-up">
       <div class="tier-label">Best Value</div>
       <div class="tier-name">6-Month Retainer</div>
-      <p class="tier-desc">For established creators and companies scaling fast. Maximum coverage, deepest discount, and a legal partner who knows your business inside out.</p>
+      <p class="tier-desc">Ideal for businesses navigating major transitions, expanding operations, or executing pivots. Our most comprehensive partnership, designed to manage the heavy lifting while you focus on growth.</p>
       <ul class="tier-features">
         <li>Everything in 3-Month</li>
-        <li>Dedicated senior legal advisor</li>
+        <li>Full-scale legal integration</li>
         <li>Proactive risk assessment</li>
         <li>Priority response within 12hrs</li>
         <li>Bi-monthly strategy sessions</li>
