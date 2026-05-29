@@ -680,112 +680,6 @@ nav.scrolled {
   line-height: 1.5;
 }
 
-/* ========== WHO WE SERVE ========== */
-.serve {
-  padding: 8rem 4rem;
-  background: var(--navy);
-  position: relative;
-  overflow: hidden;
-}
-.serve-header {
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto 4rem;
-}
-.serve-orbit-wrap {
-  position: relative;
-  width: 520px;
-  height: 520px;
-  margin: 0 auto;
-}
-.serve-orbit-ring {
-  position: absolute;
-  inset: 0;
-  border: 1.5px solid rgba(218,144,48,0.25);
-  border-radius: 50%;
-}
-.serve-orbit-ring::after {
-  content: '';
-  position: absolute;
-  inset: 40px;
-  border: 1px solid rgba(218,144,48,0.12);
-  border-radius: 50%;
-}
-.serve-orbit-center {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 2;
-}
-.serve-orbit-center-logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.6rem;
-  color: var(--orange);
-  letter-spacing: 2px;
-  margin-bottom: 0.3rem;
-}
-.serve-orbit-center-sub {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.4);
-}
-/* Orbit items that rotate around the ring */
-.serve-orbit-item {
-  position: absolute;
-  top: 50%; left: 50%;
-  z-index: 3;
-  pointer-events: none;
-}
-.serve-orbit-dot {
-  width: 14px; height: 14px;
-  background: var(--orange);
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(218,144,48,0.5);
-  position: relative;
-  margin: 0 auto;
-}
-.serve-orbit-dot::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border: 1px solid rgba(218,144,48,0.3);
-  border-radius: 50%;
-  animation: nodePulse 2s ease-in-out infinite;
-}
-@keyframes nodePulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.5); opacity: 0; }
-}
-.serve-orbit-label {
-  position: absolute;
-  white-space: nowrap;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 22px;
-  text-align: center;
-}
-.serve-orbit-label h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.1rem;
-  color: #fff;
-  margin-bottom: 0.25rem;
-}
-.serve-orbit-label p {
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-@media (max-width: 768px) {
-  .serve-orbit-wrap { width: 280px; height: 280px; }
-  .serve-orbit-label h3 { font-size: 0.85rem; }
-  .serve-orbit-label p { font-size: 0.55rem; }
-  .serve-orbit-center-logo { font-size: 1.2rem; }
-}
-
 /* ========== SECTORS ========== */
 .sectors {
   padding: 8rem 4rem;
@@ -1021,6 +915,12 @@ nav.scrolled {
   margin-bottom: 1.5rem;
   font-style: italic;
 }
+.testimonial-text p {
+  margin-bottom: 0.8rem;
+}
+.testimonial-text p:last-child {
+  margin-bottom: 0;
+}
 .testimonial-author { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
 .testimonial-role { font-size: 0.75rem; color: var(--text-body); margin-top: 0.2rem; }
 
@@ -1117,6 +1017,12 @@ nav.scrolled {
 .contact-form button {
   width: 100%;
   cursor: pointer;
+  padding: 1.1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 8px;
 }
 .contact-buttons {
   display: flex;
@@ -1400,48 +1306,10 @@ footer {
   </div>
 </section>
 
-<!-- Who We Serve -->
-<section class="serve" id="serve">
-  <div class="serve-header">
-    <div class="eyebrow reveal-up" style="color:var(--orange);">Who We Serve</div>
-    <h2 class="section-heading reveal-up" style="color: #fff;">Built for creators at <em>every stage</em></h2>
-  </div>
-  <div class="serve-orbit-wrap reveal-up">
-    <div class="serve-orbit-ring"></div>
-    <div class="serve-orbit-center">
-      <div class="serve-orbit-center-logo">B&H</div>
-      <div class="serve-orbit-center-sub">Legal</div>
-    </div>
-    <!-- These rotate around the circle via GSAP -->
-    <div class="serve-orbit-item" id="orbitItem0">
-      <div class="serve-orbit-dot"></div>
-      <div class="serve-orbit-label">
-        <h3>The Ready-to-Export Artist</h3>
-        <p>Rights · Licensing · Deals</p>
-      </div>
-    </div>
-    <div class="serve-orbit-item" id="orbitItem1">
-      <div class="serve-orbit-dot"></div>
-      <div class="serve-orbit-label">
-        <h3>The Corporate Founder</h3>
-        <p>Structure · IP · Agreements</p>
-      </div>
-    </div>
-    <div class="serve-orbit-item" id="orbitItem2">
-      <div class="serve-orbit-dot"></div>
-      <div class="serve-orbit-label">
-        <h3>The Investor / Executive</h3>
-        <p>Compliance · Capital · Scale</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="faq-header">
-    <div class="eyebrow reveal-up">FAQ</div>
-    <h2 class="section-heading reveal-up" style="color: var(--navy);">Common <em>questions</em></h2>
+    <h2 class="section-heading reveal-up" style="color: var(--navy);">Frequently Asked <em>Questions</em></h2>
   </div>
   <div class="faq-list">
     <div class="faq-item">
@@ -1478,17 +1346,17 @@ footer {
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card reveal-up">
-      <p class="testimonial-text">I've enjoyed working with Brim&amp;Hull for the last year and a half because it's just been an enlightening process to learn all about the protections that exist for me and my projects under the law, and to have someone fight for those protections to the highest standards. It's been a journey really, and I (and by extension the project) have taken on new lives and directions since then, and it's been guided by a steady hand. If you're looking to have your best interests represented, look nowhere else.</p>
+      <div class="testimonial-text"><p>I've enjoyed working with Brim&amp;Hull for the last year and a half because it's just been an enlightening process to learn all about the protections that exist for me and my projects under the law, and to have someone fight for those protections to the highest standards.</p><p>It's been a journey really, and I (and by extension the project) have taken on new lives and directions since then, and it's been guided by a steady hand.</p><p>If you're looking to have your best interests represented, look nowhere else.</p></div>
       <div class="testimonial-author">Ifeoluwa Olutayo</div>
       <div class="testimonial-role">Film Maker</div>
     </div>
     <div class="testimonial-card reveal-up">
-      <p class="testimonial-text">Working with you is different. You are an amazing professional to work with, beyond the usual questions you put your clients' long time interest into consideration. Working with you during MBA was also different. You are a leader that respects everybody's POV. I hope to work with you more.</p>
+      <div class="testimonial-text"><p>Working with Brim&amp;Hull is different. They are amazing professionals to work with, beyond the usual questions they put their clients' long time interest into consideration.</p><p>Working with Tobe during MBA was also different. She is a leader that respects everybody's POV. I hope to work with her more.</p></div>
       <div class="testimonial-author">Ayo Durotoye</div>
       <div class="testimonial-role">Talent Manager</div>
     </div>
     <div class="testimonial-card reveal-up">
-      <p class="testimonial-text">Working with Tobe was a game changer for our Files '26 project, especially with the complexity of handling multiple producers, songwriters, and artists all on one body of work. From split sheets to licensing agreements, she made sure every contributor was properly represented and protected. She didn't just handle the legal stuff &mdash; she helped us think through things we hadn't even considered. The level of detail, the turnaround time, and the way she communicated everything clearly made the whole process smooth. If you're in the music space and you're not working with Brim&amp;Hull, you're leaving yourself exposed.</p>
+      <div class="testimonial-text"><p>Working with Tobe was a game changer for our Files '26 project, especially with the complexity of handling multiple producers, songwriters, and artists all on one body of work. She took the entire burden of royalties &amp; publishing split sheets and PRO registrations off our hands, ensuring every detail was accurate and properly executed.</p><p>What stood out most was her professionalism &mdash; she remained patient, consistent with follow-ups, and kept everything on track even when our responses were delayed.</p><p><strong>With Brim&amp;Hull, you can be confident that the work will be done thoroughly, correctly, and without stress.</strong></p></div>
       <div class="testimonial-author">Kevin</div>
       <div class="testimonial-role">A&amp;R, Files '26</div>
     </div>
@@ -1501,10 +1369,6 @@ footer {
   <div class="eyebrow reveal-up" style="position:relative; z-index:2;">Let's build something that lasts</div>
   <h2 class="section-heading reveal-up" style="color: #fff;">Work with <em>us</em></h2>
   <p class="reveal-up">Book a free meeting and we'll talk through what you're building, what you need, and exactly what it costs.</p>
-
-  <div class="contact-buttons reveal-up" style="margin-top: 2.5rem;">
-    <a href="get-in-touch.html" class="btn-cta-primary">Get in Touch</a>
-  </div>
 
   <form class="contact-form reveal-up" onsubmit="event.preventDefault(); this.querySelector('.contact-form-success').style.display='flex'; this.querySelector('.contact-form-fields').style.display='none';">
     <div class="contact-form-fields">
@@ -1770,46 +1634,6 @@ gsap.utils.toArray('.services-carousel-card').forEach((card, i) => {
     scrollTrigger: { trigger: '.services-carousel', start: 'top 80%' }
   });
 });
-
-// ========== ORBIT ANIMATION ==========
-(function() {
-  const wrap = document.querySelector('.serve-orbit-wrap');
-  if (!wrap) return;
-  const items = wrap.querySelectorAll('.serve-orbit-item');
-  const radius = wrap.offsetWidth / 2;
-  const count = items.length;
-  const angleStep = (2 * Math.PI) / count;
-  // Starting angles: evenly spaced
-  const startAngles = items.length === 3 ? [-Math.PI/2, Math.PI/6 + Math.PI/2, Math.PI/6 - Math.PI/2 + Math.PI] : [];
-  // Actually use even distribution
-  const angles = [];
-  for (let i = 0; i < count; i++) angles.push(-Math.PI/2 + i * angleStep);
-
-  function positionItems(offset) {
-    items.forEach((item, i) => {
-      const angle = angles[i] + offset;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-      gsap.set(item, { x: x - 7, y: y - 7 }); // offset for dot center
-      // Counter-rotate label so text stays horizontal
-      const label = item.querySelector('.serve-orbit-label');
-      if (label) gsap.set(label, { rotation: 0 });
-    });
-  }
-
-  // Animate continuous rotation
-  let progress = { value: 0 };
-  gsap.to(progress, {
-    value: Math.PI * 2,
-    duration: 25,
-    ease: 'none',
-    repeat: -1,
-    onUpdate: () => positionItems(progress.value)
-  });
-
-  // Initial position
-  positionItems(0);
-})();
 
 // Testimonials
 gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
