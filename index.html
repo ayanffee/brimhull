@@ -1026,6 +1026,14 @@ nav.scrolled {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 8px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  transition: background 0.3s, transform 0.3s;
+}
+.contact-form button:hover {
+  background: var(--orange-light);
+  transform: translateY(-2px);
 }
 .contact-buttons {
   display: flex;
@@ -1297,7 +1305,7 @@ footer {
 <!-- About teaser (links to dedicated About + Team page) -->
 <section class="intro" id="about">
   <div class="intro-left">
-    <div class="eyebrow reveal-up">About Brim&amp;Hull</div>
+    <div class="eyebrow reveal-up" style="font-size: 1.1rem; letter-spacing: 0.2em; font-family: 'DM Serif Display', serif; font-weight: 400;">About Brim&amp;Hull</div>
     <h2 class="section-heading reveal-up" style="color: var(--navy);">We're the partner you grow with. From day one to wherever your <em>Ambition</em> takes you.</h2>
     <p class="reveal-up">Established in 2026, Brim&amp;Hull is a legal practice redefining how creators access legal services. We've replaced long conversations and unpredictable bills with upfront, fixed fees — so you can focus on driving your own success from day one.</p>
     <a href="about.html" class="btn-primary reveal-up">Read More</a>
@@ -1442,12 +1450,13 @@ footer {
       <h4>Contact us</h4>
       <a href="mailto:contact@brimandhull.com">contact@brimandhull.com</a>
       <a href="tel:+2348105751841">+234 810 575 1841</a>
-      <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://www.instagram.com/brimandhull" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://x.com/BrimandHull" target="_blank" rel="noopener">Twitter / X</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Brim&amp;Hull Legal Practitioners. All rights reserved.</span>
-    <span>Designed by Ayanfe</span>
+    <span>Designed by <a href="https://wa.me/2349011918305" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Ayanfe</a></span>
   </div>
 </footer>
 
@@ -1579,6 +1588,19 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 // ========== GSAP SCROLL ANIMATIONS ==========
 gsap.registerPlugin(ScrollTrigger);
 
+// If arriving via hash link (from another page), skip reveal animations and jump directly
+if (window.location.hash) {
+  gsap.utils.toArray('.reveal-up').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  gsap.utils.toArray('.clip-reveal').forEach(el => { el.style.clipPath = 'inset(0% 0 0 0)'; });
+  gsap.utils.toArray('.cubic-in').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  gsap.utils.toArray('.svc-row').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+  // Scroll to hash target without animation
+  const hashTarget = document.querySelector(window.location.hash);
+  if (hashTarget) {
+    setTimeout(() => { window.scrollTo(0, hashTarget.offsetTop - 80); }, 50);
+  }
+} else {
+
 // Reveal-up animations
 gsap.utils.toArray('.reveal-up').forEach(el => {
   gsap.to(el, {
@@ -1655,6 +1677,7 @@ gsap.to('.contact-bg', {
 });
 
 // ========== SECTORS — cubic animation handled above ==========
+} // end else (no hash)
 
 // Fast smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {

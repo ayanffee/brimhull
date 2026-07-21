@@ -234,9 +234,8 @@ footer {
 
 <!-- Page -->
 <section class="page-wrap">
-  <div class="page-eyebrow">Get in Touch</div>
-  <h1 class="page-h1">Two ways to start a <em>conversation with us</em></h1>
-  <p class="page-sub">Send us the details and we'll come back to you, or pick a time that works and we'll meet on a call. Either way, no fluff, just clear next steps.</p>
+  <div class="page-eyebrow" id="pageEyebrow">Get in Touch</div>
+  <h1 class="page-h1" id="pageH1">Two ways to start a <em>conversation with us</em></h1>
 
   <div class="choice-grid" id="choiceGrid">
     <a href="#" class="choice-card" id="chatChoice">
@@ -246,9 +245,9 @@ footer {
       <div class="choice-go">Open form →</div>
     </a>
     <a href="https://calendly.com" target="_blank" rel="noopener" class="choice-card">
-      <div class="choice-icon">📅</div>
+      <div class="choice-icon" style="font-family:'DM Sans',sans-serif; flex-direction:column; gap:0; line-height:1;"><span style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.85;">Jul</span><span style="font-size:1.6rem; font-weight:700;">21</span></div>
       <div class="choice-title">Book a Free Meeting</div>
-      <div class="choice-desc">Pick a time that works for you. A 30-minute call to talk through your situation, no charge.</div>
+      <div class="choice-desc">Pick a time that works for you. A free 30-minute call to talk through your needs.</div>
       <div class="choice-go">View calendar →</div>
     </a>
   </div>
@@ -326,12 +325,13 @@ footer {
     <div class="footer-col">
       <h4>Contact us</h4>
       <a href="mailto:contact@brimandhull.com">contact@brimandhull.com</a>
-      <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://www.instagram.com/brimandhull" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://x.com/BrimandHull" target="_blank" rel="noopener">Twitter / X</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Brim&amp;Hull Legal Practitioners. All rights reserved.</span>
-    <span>Designed by Ayanfe</span>
+    <span>Designed by <a href="https://wa.me/2349011918305" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Ayanfe</a></span>
   </div>
 </footer>
 
@@ -364,6 +364,9 @@ chatChoice.addEventListener('click', e => {
   choiceGrid.style.display = 'none';
   formWrap.classList.add('open');
   backToggle.classList.add('shown');
+  // Hide heading area
+  document.getElementById('pageEyebrow').style.display = 'none';
+  document.getElementById('pageH1').style.display = 'none';
   formWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 backToggle.addEventListener('click', () => {
@@ -372,6 +375,9 @@ backToggle.addEventListener('click', () => {
   backToggle.classList.remove('shown');
   document.getElementById('formFields').style.display = '';
   document.getElementById('formSuccess').classList.remove('shown');
+  // Restore heading area
+  document.getElementById('pageEyebrow').style.display = '';
+  document.getElementById('pageH1').style.display = '';
 });
 </script>
 </body>
