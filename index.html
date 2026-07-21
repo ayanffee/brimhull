@@ -1257,20 +1257,7 @@ footer {
   </div>
 </section>
 
-<!-- Sectors (Static) -->
-<section class="sectors" id="sectors">
-  <div class="sectors-header">
-    <div class="eyebrow" style="text-align:center; color:var(--orange);">Industries</div>
-    <h2 class="section-heading" style="color:#fff; text-align:center;">Sectors we <em>service</em></h2>
-  </div>
-  <div class="sectors-list">
-    <div class="sector-tag cubic-in">Music</div>
-    <div class="sector-tag cubic-in">Film</div>
-    <div class="sector-tag cubic-in">Live Events</div>
-    <div class="sector-tag cubic-in">Entertainment &amp; Culture</div>
-    <div class="sector-tag cubic-in">Creative Businesses</div>
-  </div>
-</section>
+<!-- Sectors section removed — accessible from slide-out menu -->
 
 <!-- Services -->
 <section class="services" id="services">
@@ -1590,14 +1577,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 // If arriving via hash link (from another page), skip reveal animations and jump directly
 if (window.location.hash) {
-  gsap.utils.toArray('.reveal-up').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-  gsap.utils.toArray('.clip-reveal').forEach(el => { el.style.clipPath = 'inset(0% 0 0 0)'; });
-  gsap.utils.toArray('.cubic-in').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-  gsap.utils.toArray('.svc-row').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-  // Scroll to hash target without animation
+  // Skip all animations — show everything instantly
+  gsap.utils.toArray('.reveal-up, .clip-reveal, .cubic-in, .svc-row, .services-carousel-card, .testimonial-card, .tier-card').forEach(el => {
+    el.style.opacity = 1; el.style.transform = 'none'; el.style.clipPath = 'none';
+  });
+  // Jump to hash target instantly
   const hashTarget = document.querySelector(window.location.hash);
   if (hashTarget) {
-    setTimeout(() => { window.scrollTo(0, hashTarget.offsetTop - 80); }, 50);
+    window.scrollTo(0, hashTarget.offsetTop - 80);
   }
 } else {
 
