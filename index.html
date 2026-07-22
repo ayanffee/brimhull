@@ -591,6 +591,22 @@ nav.scrolled {
 }
 .btn-primary:hover { background: var(--orange); transform: translateY(-2px); }
 .intro-right { position: relative; }
+.about-illust-wrap {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--grey-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+.about-illust {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .intro-image {
   width: 100%;
   aspect-ratio: 4/5;
@@ -781,7 +797,19 @@ nav.scrolled {
   height: 280px;
   object-fit: cover;
   display: block;
+}
+.svc-illust-wrap {
   background: var(--grey-light);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svc-illust {
+  width: 100%;
+  height: 220px;
+  object-fit: contain !important;
+  background: none !important;
 }
 .services-carousel-card-body {
   padding: 2rem;
@@ -1269,14 +1297,14 @@ footer {
 
   <div class="services-carousel" id="servicesCarousel">
     <a href="ip-law.html" class="services-carousel-card reveal-up">
-      <img src="images/ip-law-illustration.svg" alt="Intellectual Property Law">
+      <div class="svc-illust-wrap"><img src="images/ip-law-illustration.svg" alt="Intellectual Property Law" class="svc-illust"></div>
       <div class="services-carousel-card-body">
         <h3>Intellectual Property Law</h3>
         <p>Your intellectual property is your most valuable asset. We want you to own what you create and get paid for it. From trademarks and licensing to rights clearance and legal advice, we've got you covered. With fixed fees from ₦30,000.</p>
       </div>
     </a>
     <a href="commercial-law.html" class="services-carousel-card reveal-up">
-      <img src="images/commercial-law-illustration.svg" alt="Commercial Law">
+      <div class="svc-illust-wrap"><img src="images/commercial-law-illustration.svg" alt="Commercial Law" class="svc-illust"></div>
       <div class="services-carousel-card-body">
         <h3>Commercial Law</h3>
         <p>Think of us as your back-office. We handle the essentials like company registration &amp; structuring, onboarding new partners, compliance and investor readiness. We keep your business moving with fixed fees from ₦50,000.</p>
@@ -1299,10 +1327,9 @@ footer {
     <a href="about.html" class="btn-primary reveal-up">Read More</a>
   </div>
   <div class="intro-right">
-    <div class="founder-image clip-reveal" style="aspect-ratio: 4/5; border-radius: 12px;">
-      <img src="images/pint 13.jpg" alt="Brim&Hull — Built for ambitious creators">
+    <div class="about-illust-wrap clip-reveal">
+      <img src="images/about-illustration.svg" alt="Brim&Hull — Built for ambitious creators" class="about-illust">
     </div>
-    <div class="founder-accent"></div>
   </div>
 </section>
 
@@ -1479,19 +1506,27 @@ document.querySelectorAll('a, button, .services-carousel-card, .faq-question').f
 
 // ========== PRELOADER ==========
 const preloader = document.getElementById('preloader');
-const preloaderTl = gsap.timeline();
 
-preloaderTl
-  .to('.preloader-logo', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
-  .to('.preloader-line', { width: '120px', duration: 1, ease: 'power2.inOut' }, '-=0.3')
-  .to('.preloader-tagline', { opacity: 1, duration: 0.5 }, '-=0.5')
-  .to('.preloader-tagline', { opacity: 0, duration: 0.3 }, '+=0.5')
-  .to('.preloader-logo', { opacity: 0, y: -20, duration: 0.3 }, '-=0.2')
-  .to('.preloader-line', { width: '100vw', height: '100vh', borderRadius: 0, duration: 0.6, ease: 'power4.inOut' }, '-=0.1')
-  .to(preloader, { yPercent: -100, duration: 0.6, ease: 'power3.inOut', onComplete: () => {
-    preloader.style.display = 'none';
-    initHeroTagline();
-  }});
+if (sessionStorage.getItem('brimhull_visited')) {
+  // Returning visitor in this session — skip animation entirely
+  preloader.style.display = 'none';
+  initHeroTagline();
+} else {
+  // First visit — play the full intro animation
+  sessionStorage.setItem('brimhull_visited', '1');
+  const preloaderTl = gsap.timeline();
+  preloaderTl
+    .to('.preloader-logo', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
+    .to('.preloader-line', { width: '120px', duration: 1, ease: 'power2.inOut' }, '-=0.3')
+    .to('.preloader-tagline', { opacity: 1, duration: 0.5 }, '-=0.5')
+    .to('.preloader-tagline', { opacity: 0, duration: 0.3 }, '+=0.5')
+    .to('.preloader-logo', { opacity: 0, y: -20, duration: 0.3 }, '-=0.2')
+    .to('.preloader-line', { width: '100vw', height: '100vh', borderRadius: 0, duration: 0.6, ease: 'power4.inOut' }, '-=0.1')
+    .to(preloader, { yPercent: -100, duration: 0.6, ease: 'power3.inOut', onComplete: () => {
+      preloader.style.display = 'none';
+      initHeroTagline();
+    }});
+}
 
 // ========== NAV SCROLL ==========
 window.addEventListener('scroll', () => {
